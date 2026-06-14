@@ -11,31 +11,6 @@
   ],
   "items": [
     {
-      "id": "thumb-03",
-      "title": "STOP Making This Golf Mistake",
-      "client": "Simple Golf",
-      "views": "500k+ views",
-      "niche": "Sports",
-      "date": "2026-03-05",
-      "image": "assets/portfolio/thumb-03.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-03.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-03b.svg"
-        },
-        {
-          "label": "C",
-          "image": "assets/portfolio/thumb-03c.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 3
-    },
-    {
       "id": "thumb-04",
       "title": "How I Built a $10K Passive Income",
       "client": "Wealth Channel",
