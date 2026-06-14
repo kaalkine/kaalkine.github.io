@@ -373,6 +373,9 @@ function renderHeroTrusted(trusted) {
 }
 
 function thumbCell(t, edge = "") {
+  if (!t) {
+    return `<div class="thumb-cell thumb-cell--empty reveal-up" aria-hidden="true"></div>`;
+  }
   const edgeClass =
     edge === "left" ? " thumb-cell--edge-left" : edge === "right" ? " thumb-cell--edge-right" : "";
   const visual = Manimate.renderVisual(t, { width: 1920, height: 1080 });
@@ -461,8 +464,11 @@ function renderWhyHireGrid(pillars, portfolioItems) {
   const textCell = (p) =>
     `<div class="why-cell why-cell--text reveal-up"><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.body)}</p></div>`;
   const imageCell = (item) => {
+    if (!item?.image && !item?.id) {
+      return `<div class="why-cell why-cell--image why-cell--empty reveal-scale" aria-hidden="true"></div>`;
+    }
     const label = escapeAttr(item.title || "thumbnail");
-    return `<button type="button" class="why-cell why-cell--image reveal-scale" data-id="${escapeAttr(item.id)}" aria-label="View ${label}"><div class="why-cell-media">${Manimate.renderVisual(item)}</div></button>`;
+    return `<button type="button" class="why-cell why-cell--image reveal-scale" data-id="${escapeAttr(item.id || "")}" aria-label="View ${label}"><div class="why-cell-media">${Manimate.renderVisual(item)}</div></button>`;
   };
 
   // ike layout: row1 = text | image | text, row2 = image | text | image
