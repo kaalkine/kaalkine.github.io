@@ -28,23 +28,6 @@
       "homepageSlot": 6
     },
     {
-      "id": "thumb-07",
-      "title": "Epic Red Bull Challenge Gone Wrong",
-      "client": "Adventure Co",
-      "views": "100k+ views",
-      "niche": "Sports",
-      "date": "2026-02-10",
-      "image": "assets/portfolio/thumb-07.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-07.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 7
-    },
-    {
       "id": "thumb-09",
       "title": "I Survived 24 Hours in a Haunted House",
       "client": "Horror Hub",
