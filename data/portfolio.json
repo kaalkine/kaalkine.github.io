@@ -11,23 +11,6 @@
   ],
   "items": [
     {
-      "id": "thumb-02",
-      "title": "This Game Changed Everything",
-      "client": "GameDev Pal",
-      "views": "100k+ views",
-      "niche": "Entertainment",
-      "date": "2026-03-10",
-      "image": "assets/portfolio/thumb-02.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-02.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 2
-    },
-    {
       "id": "thumb-03",
       "title": "STOP Making This Golf Mistake",
       "client": "Simple Golf",
