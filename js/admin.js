@@ -37,8 +37,7 @@ function setStatus(text) {
   if (!els.status) return;
   const parts = [text].filter(Boolean);
   if (state.data?.items) {
-    const homeSlots = state.data.items.filter((i) => i.homepageSlot >= 1 && i.homepageSlot <= 10).length;
-    parts.push(`${state.data.items.length} items · ${homeSlots}/10 homepage`);
+    parts.push(`${state.data.items.length} thumbnails`);
   }
   if (hasUnsavedChanges()) parts.push("Unsaved changes");
   els.status.textContent = parts.join(" · ");
@@ -52,7 +51,7 @@ function snapshotDraft() {
 
 function hasUnsavedChanges() {
   if (state.pendingUploads.size || state.channelIconFile || state.channelIconCleared) return true;
-  if (AdminHomepage.pending.size || AdminStory.hasPending()) return true;
+  if (AdminHomepage.hasPending()) return true;
   if (!state.draft || !state.savedSnapshot) return false;
   return snapshotDraft() !== state.savedSnapshot;
 }
@@ -73,11 +72,9 @@ function clearDirty() {
 function updateSaveButtonState() {
   const saveBtn = $("admin-save-item");
   const homeBtn = $("admin-homepage-save");
-  const storyBtn = $("admin-story-save");
   const dirty = hasUnsavedChanges();
   if (saveBtn) saveBtn.classList.toggle("is-dirty", dirty && state.draft);
-  if (homeBtn) homeBtn.classList.toggle("is-dirty", AdminHomepage.pending.size > 0);
-  if (storyBtn) storyBtn.classList.toggle("is-dirty", AdminStory.hasPending());
+  if (homeBtn) homeBtn.classList.toggle("is-dirty", AdminHomepage.hasPending());
 }
 
 function cloneItem(item) {
@@ -287,27 +284,8 @@ function renderVariants() {
       state.draft.image = state.draft.variants[0]?.image || state.draft.image;
       markDirty();
       renderVariants();
-      renderHomepageGrid();
     });
   });
-}
-
-function renderHomepageGrid() {
-  const grid = $("admin-homepage-grid");
-  if (!grid || !state.data) return;
-
-  const slots = Array.from({ length: 10 }, (_, i) => {
-    const slot = i + 1;
-    const item = state.data.items.find((it) => it.homepageSlot === slot);
-    const isCurrent = state.draft?.id === item?.id;
-    const img = item ? itemImageUrl(item.image) : "";
-    return `
-      <div class="admin-homepage-slot${isCurrent ? " is-current" : ""}" title="Slot ${slot}">
-        ${img ? `<img src="${escapeAttr(img)}" alt="">` : `Slot ${slot}`}
-      </div>`;
-  });
-
-  grid.innerHTML = slots.join("");
 }
 
 function fillCategoryFilter() {
@@ -351,7 +329,7 @@ function renderItemList() {
         <img class="admin-item-thumb" src="${escapeAttr(thumb)}" alt="" loading="lazy">
         <span class="admin-item-copy">
           <span class="admin-item-title">${escapeHtml(item.title || item.id)}</span>
-          <small>${escapeHtml(item.niche || "")}${item.homepageSlot ? ` · Home #${item.homepageSlot}` : ""}</small>
+          <small>${escapeHtml(item.niche || "")}</small>
         </span>
       </button>
     </li>`;
@@ -367,7 +345,6 @@ function populateEditor(item) {
   $("field-title").value = item.title || "";
   syncNicheFields(item);
   $("field-date").value = item.date || new Date().toISOString().slice(0, 10);
-  $("field-homepage").value = item.homepageSlot ? String(item.homepageSlot) : "";
   $("field-show-channel").checked = item.showChannel !== false;
   $("field-client").value = item.client || "";
   syncViewsFields(item);
@@ -389,7 +366,6 @@ function populateEditor(item) {
   }
 
   renderVariants();
-  renderHomepageGrid();
 }
 
 function selectItem(id, { skipDirtyCheck = false } = {}) {
@@ -452,7 +428,6 @@ function duplicateItem() {
     image: GitHubStore.thumbImagePath(id, VARIANT_LABELS[i] || "A", ".jpg"),
   }));
   copy.image = copy.variants[0].image;
-  delete copy.homepageSlot;
   delete copy.channelIcon;
   state.data.items.unshift(copy);
   selectItem(id, { skipDirtyCheck: true });
@@ -471,24 +446,11 @@ function readEditorIntoDraft() {
   state.draft.showChannel = $("field-show-channel").checked;
   state.draft.client = $("field-client").value.trim();
 
-  const slotVal = $("field-homepage").value;
-  state.draft.homepageSlot = slotVal ? parseInt(slotVal, 10) : undefined;
-  if (!state.draft.homepageSlot) delete state.draft.homepageSlot;
-
   if (!state.draft.showChannel) {
     delete state.draft.channelIcon;
   } else if (state.channelIconCleared) {
     delete state.draft.channelIcon;
   }
-}
-
-function resolveHomepageSlotConflicts() {
-  if (!state.draft?.homepageSlot) return;
-  state.data.items.forEach((item) => {
-    if (item.id !== state.draft.id && item.homepageSlot === state.draft.homepageSlot) {
-      delete item.homepageSlot;
-    }
-  });
 }
 
 async function uploadPendingFiles() {
@@ -529,7 +491,6 @@ async function saveItem(e) {
     showToast("Choose or enter a category", "error");
     return;
   }
-  resolveHomepageSlotConflicts();
 
   const idx = state.data.items.findIndex((i) => i.id === state.draft.id);
   if (idx < 0) return;
@@ -595,7 +556,6 @@ async function deleteItem() {
     showToast(`Deleted ${title}`);
     setStatus("Deleted");
     renderItemList();
-    renderHomepageGrid();
   } catch (err) {
     console.error(err);
     showToast(err.message || "Delete failed", "error");
@@ -694,9 +654,7 @@ async function loadPortfolio() {
   fillCategoryFilter();
   renderNicheList();
   renderItemList();
-  renderHomepageGrid();
-  AdminHomepage.render(state.site, state.data);
-  AdminStory.render();
+  AdminHomepage.render(state.site);
   updateSaveButtonState();
   setStatus("Ready");
 }
@@ -709,42 +667,27 @@ function switchTab(tab, { silent = false } = {}) {
   sessionStorage.setItem("kaalkine_admin_tab", tab);
   const portfolioPanel = document.getElementById("admin-panel-portfolio");
   const homepagePanel = document.getElementById("admin-panel-homepage");
-  const storyPanel = document.getElementById("admin-panel-story");
   document.querySelectorAll(".admin-tab").forEach((btn) => {
     btn.classList.toggle("is-active", btn.dataset.tab === tab);
   });
   if (portfolioPanel) portfolioPanel.hidden = tab !== "portfolio";
   if (homepagePanel) homepagePanel.hidden = tab !== "homepage";
-  if (storyPanel) storyPanel.hidden = tab !== "story";
 }
 
 async function saveHomepageSections() {
-  if (state.saving || !state.data || !state.site) return;
+  if (state.saving || !state.site) return;
 
   state.saving = true;
-  setStatus("Saving homepage sections…");
+  setStatus("Saving homepage wall…");
   $("admin-homepage-save").disabled = true;
 
   try {
-    await AdminHomepage.save(state.site, state.data);
-    const hadHeroHand = [...AdminHomepage.pending.keys()].some((k) => k.startsWith("file:hero:"));
-    showToast("Homepage sections saved");
-    if (hadHeroHand) {
-      showToast("Run npm run build:hero-lottie to refresh the homepage hero animation", "error");
-    }
+    await AdminHomepage.save(state.site);
+    showToast("Homepage wall saved");
     setStatus("Saved");
     AdminHomepage.clearPending();
     updateSaveButtonState();
-    renderItemList();
-    renderHomepageGrid();
-    AdminHomepage.render(state.site, state.data);
-    if (state.selectedId && state.draft) {
-      const item = state.data.items.find((i) => i.id === state.selectedId);
-      if (item) {
-        state.draft = cloneItem(item);
-        populateEditor(state.draft);
-      }
-    }
+    AdminHomepage.render(state.site);
   } catch (err) {
     console.error(err);
     showToast(err.message || "Save failed", "error");
@@ -755,41 +698,10 @@ async function saveHomepageSections() {
   }
 }
 
-async function saveStoryImages() {
-  if (state.saving || !AdminStory.hasPending()) return;
-
-  const hadBobble = [...AdminStory.pending.keys()].some(
-    (k) => k === "file:bobble-body" || k === "file:bobble-head"
-  );
-
-  state.saving = true;
-  setStatus("Saving story images…");
-  $("admin-story-save").disabled = true;
-
-  try {
-    await AdminStory.save();
-    showToast("Story images saved");
-    if (hadBobble) {
-      showToast("Run npm run build:story-bobble-lottie to refresh the story animation", "error");
-    }
-    AdminStory.render();
-    updateSaveButtonState();
-    setStatus("Saved");
-  } catch (err) {
-    console.error(err);
-    showToast(err.message || "Save failed", "error");
-    setStatus("Save failed");
-  } finally {
-    state.saving = false;
-    $("admin-story-save").disabled = false;
-  }
-}
-
 async function reloadFromGitHub() {
   if (hasUnsavedChanges() && !window.confirm("Reload from GitHub and discard unsaved changes?")) return;
   clearPending();
   AdminHomepage.clearPending();
-  AdminStory.clearPending();
   state.selectedId = null;
   state.draft = null;
   els.editor.hidden = true;
@@ -803,7 +715,8 @@ async function unlockWithToken(token) {
   await GitHubStore.testConnection();
   showShell();
   await loadPortfolio();
-  const savedTab = sessionStorage.getItem("kaalkine_admin_tab");
+  const savedTabRaw = sessionStorage.getItem("kaalkine_admin_tab");
+  const savedTab = savedTabRaw === "story" ? "portfolio" : savedTabRaw;
   if (savedTab) switchTab(savedTab, { silent: true });
 }
 
@@ -836,7 +749,6 @@ function bindEvents() {
     state.draft = null;
     clearPending();
     AdminHomepage.clearPending();
-    AdminStory.clearPending();
     showGate();
     $("github-token").value = "";
   });
@@ -846,7 +758,6 @@ function bindEvents() {
   });
 
   $("admin-homepage-save")?.addEventListener("click", saveHomepageSections);
-  $("admin-story-save")?.addEventListener("click", saveStoryImages);
   $("admin-reload")?.addEventListener("click", reloadFromGitHub);
 
   $("admin-search")?.addEventListener("input", renderItemList);
@@ -866,9 +777,7 @@ function bindEvents() {
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === "s") {
       e.preventDefault();
-      if (document.getElementById("admin-panel-story") && !document.getElementById("admin-panel-story").hidden) {
-        saveStoryImages();
-      } else if (document.getElementById("admin-panel-homepage") && !document.getElementById("admin-panel-homepage").hidden) {
+      if (document.getElementById("admin-panel-homepage") && !document.getElementById("admin-panel-homepage").hidden) {
         saveHomepageSections();
       } else if (state.draft) {
         saveItem();
@@ -901,13 +810,6 @@ function bindEvents() {
   });
 
   $("field-show-channel")?.addEventListener("change", syncChannelFields);
-  $("field-homepage")?.addEventListener("change", () => {
-    if (!state.draft) return;
-    const slotVal = $("field-homepage").value;
-    state.draft.homepageSlot = slotVal ? parseInt(slotVal, 10) : undefined;
-    markDirty();
-    renderHomepageGrid();
-  });
 
   $("admin-add-variant")?.addEventListener("click", () => {
     if (!state.draft) return;

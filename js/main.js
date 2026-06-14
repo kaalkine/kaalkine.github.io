@@ -372,75 +372,47 @@ function renderHeroTrusted(trusted) {
     .join("");
 }
 
-function thumbCell(t, edge = "") {
-  if (!t) {
-    return `<div class="thumb-cell thumb-cell--empty reveal-up" aria-hidden="true"></div>`;
-  }
-  const edgeClass =
-    edge === "left" ? " thumb-cell--edge-left" : edge === "right" ? " thumb-cell--edge-right" : "";
-  const visual = Manimate.renderVisual(t, { width: 1920, height: 1080 });
-  const label = escapeAttr(t.title);
-  return `<button type="button" class="thumb-cell reveal-up${edgeClass}" data-id="${escapeAttr(t.id)}" aria-label="View ${label}"><span class="thumb-cell-media">${visual}</span></button>`;
-}
-
 function textCell(vp) {
   return `<div class="thumb-cell thumb-cell--text reveal-up"><h3>${escapeHtml(vp.title)}</h3><p>${escapeHtml(vp.body)}</p></div>`;
 }
 
-function getHomepageItems(items) {
-  const bySlot = new Map();
-  items.forEach((item) => {
-    const slot = item.homepageSlot;
-    if (slot >= 1 && slot <= 10) bySlot.set(slot, item);
-  });
-
-  if (bySlot.size > 0) {
-    const result = [];
-    for (let s = 1; s <= 10; s++) {
-      if (bySlot.has(s)) result.push(bySlot.get(s));
-    }
-    if (result.length >= 10) return result;
-
-    const used = new Set(result.map((i) => i.id));
-    for (const item of items) {
-      if (result.length >= 10) break;
-      if (!used.has(item.id) && !item.homepageSlot) {
-        result.push(item);
-        used.add(item.id);
-      }
-    }
-    return result.length ? result : items.slice(0, 10);
+function wallImageCell(imagePath, edge = "") {
+  if (!imagePath) {
+    return `<div class="thumb-cell thumb-cell--empty reveal-up" aria-hidden="true"></div>`;
   }
-
-  return items.slice(0, 10);
+  const edgeClass =
+    edge === "left" ? " thumb-cell--edge-left" : edge === "right" ? " thumb-cell--edge-right" : "";
+  const src = escapeAttr(imagePath);
+  return `<div class="thumb-cell reveal-up${edgeClass}"><span class="thumb-cell-media"><img src="${src}" alt="" loading="lazy" decoding="async"></span></div>`;
 }
 
-function renderThumbnailWall(portfolio, site) {
+function getHomepageWallImages(site) {
+  const wall = Array.isArray(site?.homepageWall) ? [...site.homepageWall] : [];
+  while (wall.length < 10) wall.push("");
+  return wall.slice(0, 10);
+}
+
+function renderThumbnailWall(site) {
   const grid = document.querySelector(".thumb-wall-grid");
   if (!grid) return;
 
-  const thumbs = getHomepageItems(portfolio.items);
+  const thumbs = getHomepageWallImages(site);
   const [vp0, vp1] = site.valueProps;
 
-  // ike layout — 6×2 grid: row1 = 2 thumbs | text | 3 thumbs, row2 = 3 | text | 2
   const ordered = [];
-  ordered.push(thumbCell(thumbs[0], "left"));
-  if (thumbs[1]) ordered.push(thumbCell(thumbs[1]));
+  ordered.push(wallImageCell(thumbs[0], "left"));
+  if (thumbs[1]) ordered.push(wallImageCell(thumbs[1]));
   if (vp0) ordered.push(textCell(vp0));
-  thumbs.slice(2, 4).forEach((t) => ordered.push(thumbCell(t)));
-  if (thumbs[4]) ordered.push(thumbCell(thumbs[4], "right"));
-  ordered.push(thumbCell(thumbs[5], "left"));
-  thumbs.slice(6, 8).forEach((t) => ordered.push(thumbCell(t)));
+  thumbs.slice(2, 4).forEach((t) => ordered.push(wallImageCell(t)));
+  if (thumbs[4]) ordered.push(wallImageCell(thumbs[4], "right"));
+  ordered.push(wallImageCell(thumbs[5], "left"));
+  thumbs.slice(6, 8).forEach((t) => ordered.push(wallImageCell(t)));
   if (vp1) ordered.push(textCell(vp1));
-  if (thumbs[8]) ordered.push(thumbCell(thumbs[8]));
-  if (thumbs[9]) ordered.push(thumbCell(thumbs[9], "right"));
+  if (thumbs[8]) ordered.push(wallImageCell(thumbs[8]));
+  if (thumbs[9]) ordered.push(wallImageCell(thumbs[9], "right"));
 
   grid.setAttribute("data-reveal-stagger", "");
   grid.innerHTML = ordered.join("");
-
-  Lightbox.setItems(portfolio.items);
-  Lightbox.init();
-  Lightbox.bindGrid(grid);
 }
 
 function resolveWhyHireItem(pillar, portfolioItems, index) {
@@ -510,7 +482,7 @@ async function renderHome(site) {
   renderTestimonialCarousel(applyTrustedSubscriberRoles(site.testimonials, site.trustedBy));
 
   const portfolio = await portfolioPromise;
-  renderThumbnailWall(portfolio, site);
+  renderThumbnailWall(site);
 
   const process = site.process;
   queryRequired(".process .section-title").textContent = process.title;
