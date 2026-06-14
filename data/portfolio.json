@@ -11,23 +11,6 @@
   ],
   "items": [
     {
-      "id": "thumb-09",
-      "title": "I Survived 24 Hours in a Haunted House",
-      "client": "Horror Hub",
-      "views": "500k+ views",
-      "niche": "Entertainment",
-      "date": "2026-01-28",
-      "image": "assets/portfolio/thumb-09.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-09.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 9
-    },
-    {
       "id": "thumb-15",
       "title": "We Hatched The Tiniest Eggs From Amazon",
       "client": "Farm Life",
