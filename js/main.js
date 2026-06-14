@@ -1,7 +1,7 @@
 const SITE_DATA_URL = "data/site.json";
 
 async function loadSiteData() {
-  const res = await fetch(`${SITE_DATA_URL}?v=2`, { cache: "no-store" });
+  const res = await fetch(SITE_DATA_URL);
   if (!res.ok) throw new Error("Failed to load site data");
   return res.json();
 }
@@ -348,7 +348,8 @@ function renderHeroVisual() {
   const frame = document.querySelector(".hero-visual-frame");
   if (!frame) return;
   frame.innerHTML = Manimate.renderHeroScene();
-  if (typeof initHeroLottie === "function") initHeroLottie();
+  if (typeof scheduleHeroLottie === "function") scheduleHeroLottie();
+  else if (typeof initHeroLottie === "function") initHeroLottie();
 }
 
 function renderHeroTrusted(trusted) {
@@ -496,11 +497,13 @@ async function renderHome(site) {
     <a href="${escapeAttr(hero.ctaPrimary.href)}" class="btn btn-primary">${escapeHtml(hero.ctaPrimary.label)}</a>
     <a href="${escapeAttr(hero.ctaSecondary.href)}" class="btn btn-ghost">${escapeHtml(hero.ctaSecondary.label)}</a>`;
 
+  const portfolioPromise = loadPortfolioData();
+
   renderHeroTrusted(site.trustedBy);
   renderHeroVisual();
   renderTestimonialCarousel(applyTrustedSubscriberRoles(site.testimonials, site.trustedBy));
 
-  const portfolio = await loadPortfolioData();
+  const portfolio = await portfolioPromise;
   renderThumbnailWall(portfolio, site);
 
   const process = site.process;
@@ -664,7 +667,8 @@ async function init() {
       await renderHome(site);
     } else if (page === "story.html") {
       renderStory(site);
-      if (window.initStoryLottie) window.initStoryLottie();
+      if (window.scheduleStoryLottie) window.scheduleStoryLottie();
+      else if (window.initStoryLottie) window.initStoryLottie();
       revealHero();
       initScrollReveals();
     } else if (page === "contact.html") {

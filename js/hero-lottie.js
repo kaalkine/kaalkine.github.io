@@ -1,4 +1,4 @@
-const HERO_LOTTIE_PATH = "assets/hero/kaalkine-hero.json?v=1781414619108";
+const HERO_LOTTIE_PATH = "assets/hero/kaalkine-hero.json?v=1781416039400";
 
 function initHeroLottie() {
   const container = document.querySelector(".hero-lottie");
@@ -18,6 +18,7 @@ function initHeroLottie() {
     path: HERO_LOTTIE_PATH,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid meet",
+      progressiveLoad: true,
     },
   });
 
@@ -40,4 +41,15 @@ function initHeroLottie() {
   );
 }
 
+function scheduleHeroLottie() {
+  if (!document.querySelector(".hero-lottie")) return;
+
+  runWhenIdle(() => {
+    loadLottieWeb()
+      .then(() => initHeroLottie())
+      .catch((err) => console.error(err));
+  });
+}
+
 window.initHeroLottie = initHeroLottie;
+window.scheduleHeroLottie = scheduleHeroLottie;

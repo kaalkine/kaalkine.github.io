@@ -81,3 +81,39 @@ window.showSiteError = showSiteError;
 window.queryEl = queryEl;
 window.queryRequired = queryRequired;
 window.buildSparkCtaButton = buildSparkCtaButton;
+
+const LOTTIE_CDN =
+  "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js";
+let lottieLoadPromise = null;
+
+function loadLottieWeb() {
+  if (window.lottie) return Promise.resolve(window.lottie);
+  if (lottieLoadPromise) return lottieLoadPromise;
+
+  lottieLoadPromise = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = LOTTIE_CDN;
+    script.crossOrigin = "anonymous";
+    script.referrerPolicy = "no-referrer";
+    script.async = true;
+    script.onload = () => {
+      if (window.lottie) resolve(window.lottie);
+      else reject(new Error("lottie-web loaded without a global"));
+    };
+    script.onerror = () => reject(new Error("lottie-web failed to load"));
+    document.head.appendChild(script);
+  });
+
+  return lottieLoadPromise;
+}
+
+function runWhenIdle(callback, timeoutMs = 2000) {
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(callback, { timeout: timeoutMs });
+    return;
+  }
+  window.setTimeout(callback, 1);
+}
+
+window.loadLottieWeb = loadLottieWeb;
+window.runWhenIdle = runWhenIdle;
