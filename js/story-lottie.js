@@ -1,4 +1,4 @@
-const STORY_BOBBLE_LOTTIE_PATH = "assets/story/bobble-head.json?v=1781414620310";
+const STORY_BOBBLE_LOTTIE_PATH = "assets/story/bobble-head.json?v=1781416040608";
 const STORY_PLAYBACK_SPEED = 0.88;
 
 function initStoryLottie() {
@@ -19,7 +19,7 @@ function initStoryLottie() {
     path: STORY_BOBBLE_LOTTIE_PATH,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid meet",
-      progressiveLoad: false,
+      progressiveLoad: true,
     },
   });
 
@@ -41,4 +41,15 @@ function initStoryLottie() {
   );
 }
 
+function scheduleStoryLottie() {
+  if (!document.querySelector(".story-bobble-lottie")) return;
+
+  runWhenIdle(() => {
+    loadLottieWeb()
+      .then(() => initStoryLottie())
+      .catch((err) => console.error(err));
+  });
+}
+
 window.initStoryLottie = initStoryLottie;
+window.scheduleStoryLottie = scheduleStoryLottie;

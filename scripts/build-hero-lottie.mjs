@@ -18,6 +18,7 @@ const TEMPLATE_URL =
   "https://framerusercontent.com/assets/SvEjNJ4pCR9as0s1yg8zXf1E.json";
 const TEMPLATE_CACHE = path.join(root, ".tmp-lottie-template.json");
 const OUT_PATH = path.join(root, "assets", "hero", "kaalkine-hero.json");
+const IMAGES_DIR = path.join(root, "assets", "hero", "images");
 const CONFIG_PATH = path.join(root, "data", "admin-config.json");
 
 const HAND_IN_POINT = 87;
@@ -67,15 +68,23 @@ async function loadTemplate({ fresh = false } = {}) {
   return JSON.parse(text);
 }
 
-async function pngToDataUri(filePath, width, height) {
-  const buffer = await sharp(filePath)
+async function writeWebpAsset(filePath, width, height, fileName) {
+  fs.mkdirSync(IMAGES_DIR, { recursive: true });
+  const outPath = path.join(IMAGES_DIR, fileName);
+  await sharp(filePath)
     .resize(width, height, {
       fit: "contain",
       background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
-    .png()
-    .toBuffer();
-  return `data:image/png;base64,${buffer.toString("base64")}`;
+    .webp({ quality: 82, effort: 4, alphaQuality: 80 })
+    .toFile(outPath);
+  return fileName;
+}
+
+function setExternalImageAsset(asset, fileName) {
+  asset.u = "images/";
+  asset.p = fileName;
+  asset.e = 0;
 }
 
 function offsetVec3(vec, delta) {
@@ -180,8 +189,12 @@ async function main() {
     throw new Error("Template missing image_0 or image_1 assets");
   }
 
-  bodyAsset.p = await pngToDataUri(portraitSrc, bodyAsset.w, bodyAsset.h);
-  handAsset.p = await pngToDataUri(handSrc, handAsset.w, handAsset.h);
+  const [bodyFile, handFile] = await Promise.all([
+    writeWebpAsset(portraitSrc, bodyAsset.w, bodyAsset.h, "hero-body.webp"),
+    writeWebpAsset(handSrc, handAsset.w, handAsset.h, "hero-hand.webp"),
+  ]);
+  setExternalImageAsset(bodyAsset, bodyFile);
+  setExternalImageAsset(handAsset, handFile);
 
   const hand = getHandLayer(lottie);
   nudgeBullseye(lottie, hand);

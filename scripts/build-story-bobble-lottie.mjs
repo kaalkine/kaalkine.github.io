@@ -23,6 +23,7 @@ const ROTATION_DEG_LEFT = 3;
 const BODY_SRC = path.join(root, "my_story_page", "image_one_body.png");
 const HEAD_SRC = path.join(root, "my_story_page", "image_one_head.png");
 const OUT_PATH = path.join(root, "assets", "story", "bobble-head.json");
+const IMAGES_DIR = path.join(root, "assets", "story", "images");
 
 /** Optional overrides in source pixels (+x right, +y down). */
 const NECK_ANCHOR_SRC = null;
@@ -96,14 +97,14 @@ async function detectNeckAnchor(filePath, meta) {
   return [cx, rows[0].y];
 }
 
-function imageAsset(id, width, height, dataUri) {
+function imageAsset(id, width, height, fileName) {
   return {
     id,
     w: width,
     h: height,
-    u: "",
-    p: dataUri,
-    e: 1,
+    u: "images/",
+    p: fileName,
+    e: 0,
   };
 }
 
@@ -135,18 +136,17 @@ async function loadSourceMeta(filePath) {
   return { width: meta.width, height: meta.height };
 }
 
-async function resizePng(filePath, width, height) {
-  return sharp(filePath)
+async function writeWebpAsset(filePath, width, height, fileName) {
+  fs.mkdirSync(IMAGES_DIR, { recursive: true });
+  const outPath = path.join(IMAGES_DIR, fileName);
+  await sharp(filePath)
     .resize(width, height, {
       fit: "contain",
       background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
-    .png()
-    .toBuffer();
-}
-
-async function pngBufferToDataUri(buffer) {
-  return `data:image/png;base64,${buffer.toString("base64")}`;
+    .webp({ quality: 82, effort: 4, alphaQuality: 80 })
+    .toFile(outPath);
+  return fileName;
 }
 
 function bumpStoryLottieCacheVersion() {
@@ -195,14 +195,9 @@ async function main() {
   const bodyAnchor = [Math.round(bodyW / 2), Math.round(bodyH / 2)];
   const bodyPos = [Math.round(bodyOffsetX + bodyW / 2), Math.round(bodyH / 2)];
 
-  const [bodyBuffer, headBuffer] = await Promise.all([
-    resizePng(BODY_SRC, bodyW, bodyH),
-    resizePng(HEAD_SRC, headW, headH),
-  ]);
-
-  const [bodyUri, headUri] = await Promise.all([
-    pngBufferToDataUri(bodyBuffer),
-    pngBufferToDataUri(headBuffer),
+  const [bodyFile, headFile] = await Promise.all([
+    writeWebpAsset(BODY_SRC, bodyW, bodyH, "bobble-body.webp"),
+    writeWebpAsset(HEAD_SRC, headW, headH, "bobble-head.webp"),
   ]);
 
   const lottie = {
@@ -215,8 +210,8 @@ async function main() {
     nm: "Kaalkine Story Bobble",
     ddd: 0,
     assets: [
-      imageAsset("image_body", bodyW, bodyH, bodyUri),
-      imageAsset("image_head", headW, headH, headUri),
+      imageAsset("image_body", bodyW, bodyH, bodyFile),
+      imageAsset("image_head", headW, headH, headFile),
     ],
     layers: [
       imageLayer({
