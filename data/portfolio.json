@@ -25,22 +25,6 @@
         }
       ],
       "showChannel": true
-    },
-    {
-      "id": "thumb-16",
-      "title": "How To Start Your First YouTube Channel",
-      "client": "Growth Lab",
-      "views": "100k+ views",
-      "niche": "Educational",
-      "date": "2024-09-15",
-      "image": "assets/portfolio/thumb-16.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-16.svg"
-        }
-      ],
-      "showChannel": false
     }
   ]
 }
