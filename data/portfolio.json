@@ -11,27 +11,6 @@
   ],
   "items": [
     {
-      "id": "thumb-01",
-      "title": "I Learned 50 Skills in 30 Days",
-      "client": "Mike Rivers",
-      "views": "1M+ views",
-      "niche": "Lifestyle",
-      "date": "2026-03-15",
-      "image": "assets/portfolio/thumb-01.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-01.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-01b.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 1
-    },
-    {
       "id": "thumb-02",
       "title": "This Game Changed Everything",
       "client": "GameDev Pal",
