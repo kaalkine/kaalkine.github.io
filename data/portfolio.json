@@ -11,23 +11,6 @@
   ],
   "items": [
     {
-      "id": "thumb-06",
-      "title": "Why Your Code Is Slow (And How To Fix It)",
-      "client": "Dev Daily",
-      "views": "250k+ views",
-      "niche": "Other",
-      "date": "2026-02-15",
-      "image": "assets/portfolio/thumb-06.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-06.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 6
-    },
-    {
       "id": "thumb-09",
       "title": "I Survived 24 Hours in a Haunted House",
       "client": "Horror Hub",
