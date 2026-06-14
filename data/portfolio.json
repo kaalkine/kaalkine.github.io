@@ -9,22 +9,5 @@
     "Entertainment",
     "Other"
   ],
-  "items": [
-    {
-      "id": "thumb-15",
-      "title": "We Hatched The Tiniest Eggs From Amazon",
-      "client": "Farm Life",
-      "views": "100k+ views",
-      "niche": "Lifestyle",
-      "date": "2024-10-20",
-      "image": "assets/portfolio/thumb-15.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-15.svg"
-        }
-      ],
-      "showChannel": true
-    }
-  ]
+  "items": []
 }
