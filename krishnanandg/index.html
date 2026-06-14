@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="admin-base" content="..">
+  <title>Kaalkine Admin</title>
+  <link rel="icon" href="../assets/brand/kaalkine-logo.svg?v=1781414620712" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@700;800;900&family=Albert+Sans:wght@0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin-page">
+  <div id="admin-app">
+    <section id="admin-gate" class="admin-gate" hidden>
+      <div class="admin-gate-card">
+        <h1>Site admin</h1>
+        <p class="admin-gate-lead">Sign in with a GitHub fine-grained token to manage your live site from one place.</p>
+        <ul class="admin-gate-features">
+          <li>Portfolio thumbnails, categories &amp; A/B variants</li>
+          <li>Homepage wall &amp; “Why hire Kaalkine” images</li>
+          <li>My Story page illustrations</li>
+        </ul>
+        <form id="admin-auth-form" class="admin-auth-form">
+          <label for="github-token">GitHub Personal Access Token</label>
+          <input type="password" id="github-token" name="token" autocomplete="off" placeholder="github_pat_…" required>
+          <p class="admin-hint">
+            Create a token at GitHub → Settings → Developer settings → Fine-grained tokens.
+            Grant <strong>Contents: Read and write</strong> on <code>kaalkine/kaalkine.github.io</code>.
+            Your token stays in this tab only (<code>sessionStorage</code>) and is never saved to the repo.
+          </p>
+          <div class="admin-auth-actions">
+            <button type="submit" class="btn btn-primary">Unlock admin</button>
+          </div>
+          <p id="admin-auth-error" class="admin-error" role="alert" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <div id="admin-shell" class="admin-shell" hidden>
+      <header class="admin-header">
+        <div class="admin-header-inner">
+          <h1 class="admin-logo">Kaalkine admin</h1>
+          <nav class="admin-tabs" aria-label="Admin sections">
+            <button type="button" class="admin-tab is-active" data-tab="portfolio">Portfolio</button>
+            <button type="button" class="admin-tab" data-tab="homepage">Homepage</button>
+            <button type="button" class="admin-tab" data-tab="story">My Story</button>
+          </nav>
+          <div class="admin-header-actions">
+            <a href="../index.html" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">View site</a>
+            <button type="button" id="admin-reload" class="btn btn-ghost btn-sm">Reload</button>
+            <span id="admin-status" class="admin-status" aria-live="polite"></span>
+            <button type="button" id="admin-sign-out" class="btn btn-ghost btn-sm">Sign out</button>
+          </div>
+        </div>
+      </header>
+
+      <div id="admin-panel-portfolio" class="admin-tab-panel">
+      <div class="admin-layout">
+        <aside class="admin-sidebar">
+          <div class="admin-sidebar-top">
+            <input type="search" id="admin-search" class="admin-search" placeholder="Search title or niche…" aria-label="Search items">
+            <select id="admin-category-filter" class="admin-category-filter" aria-label="Filter by category">
+              <option value="">All categories</option>
+            </select>
+            <button type="button" id="admin-add" class="btn btn-primary btn-sm admin-add-btn">+ Add thumbnail</button>
+            <details class="admin-categories">
+              <summary>Manage categories</summary>
+              <ul id="admin-niche-list" class="admin-niche-list"></ul>
+              <div class="admin-niche-add">
+                <input type="text" id="admin-new-niche" class="admin-new-niche" placeholder="New category name" aria-label="New category name">
+                <button type="button" id="admin-add-niche" class="btn btn-ghost btn-sm">Add</button>
+              </div>
+            </details>
+          </div>
+          <ul id="admin-item-list" class="admin-item-list" role="listbox" aria-label="Portfolio items"></ul>
+        </aside>
+
+        <main class="admin-main">
+          <div id="admin-empty" class="admin-empty">
+            <p class="admin-empty-title">No thumbnail selected</p>
+            <p>Pick one from the list or create a new thumbnail to get started.</p>
+            <button type="button" class="btn btn-primary btn-sm admin-empty-add">+ Add thumbnail</button>
+          </div>
+
+          <form id="admin-editor" class="admin-editor" hidden>
+            <div class="admin-editor-header">
+              <h2 id="admin-editor-title">Edit thumbnail</h2>
+              <div class="admin-editor-actions">
+                <button type="button" id="admin-duplicate" class="btn btn-ghost btn-sm">Duplicate</button>
+                <button type="button" id="admin-discard" class="btn btn-ghost btn-sm">Discard</button>
+                <button type="button" id="admin-delete" class="btn btn-ghost btn-sm admin-delete-btn">Delete</button>
+                <button type="submit" id="admin-save-item" class="btn btn-primary btn-sm">Save item</button>
+              </div>
+            </div>
+
+            <div class="admin-form-grid">
+              <div class="admin-field admin-field--full">
+                <label for="field-title">Video title</label>
+                <input type="text" id="field-title" name="title" required>
+              </div>
+
+              <div class="admin-field">
+                <label for="field-views-preset">Views</label>
+                <select id="field-views-preset" name="viewsPreset">
+                  <option value="">None</option>
+                  <option value="100k+ views">~100k views</option>
+                  <option value="250k+ views">~250k views</option>
+                  <option value="300k+ views">~300k views</option>
+                  <option value="500k+ views">~500k views</option>
+                  <option value="1M+ views">~1M views</option>
+                  <option value="custom">Custom…</option>
+                </select>
+              </div>
+
+              <div class="admin-field" id="field-views-custom-wrap" hidden>
+                <label for="field-views-custom">Custom views label</label>
+                <input type="text" id="field-views-custom" name="viewsCustom" placeholder="e.g. 2M+ views">
+              </div>
+
+              <div class="admin-field">
+                <label for="field-niche">Category</label>
+                <select id="field-niche" name="niche" required></select>
+              </div>
+
+              <div class="admin-field" id="field-niche-custom-wrap" hidden>
+                <label for="field-niche-custom">Custom category</label>
+                <input type="text" id="field-niche-custom" name="nicheCustom" placeholder="e.g. Gaming">
+              </div>
+
+              <div class="admin-field">
+                <label for="field-date">Date</label>
+                <input type="date" id="field-date" name="date" required>
+              </div>
+
+              <div class="admin-field">
+                <label for="field-homepage">Homepage slot</label>
+                <select id="field-homepage" name="homepageSlot">
+                  <option value="">Not on homepage</option>
+                  <option value="1">Slot 1</option>
+                  <option value="2">Slot 2</option>
+                  <option value="3">Slot 3</option>
+                  <option value="4">Slot 4</option>
+                  <option value="5">Slot 5</option>
+                  <option value="6">Slot 6</option>
+                  <option value="7">Slot 7</option>
+                  <option value="8">Slot 8</option>
+                  <option value="9">Slot 9</option>
+                  <option value="10">Slot 10</option>
+                </select>
+              </div>
+
+              <div class="admin-field admin-field--full admin-channel-section">
+                <label class="admin-toggle">
+                  <input type="checkbox" id="field-show-channel" name="showChannel">
+                  <span>Show channel name &amp; icon on portfolio</span>
+                </label>
+
+                <div id="channel-fields" class="admin-channel-fields">
+                  <div class="admin-field">
+                    <label for="field-client">Channel name</label>
+                    <input type="text" id="field-client" name="client" placeholder="Channel name">
+                  </div>
+                  <div class="admin-field">
+                    <label>Channel icon (optional)</label>
+                    <div id="channel-icon-zone" class="admin-upload-row admin-dropzone" tabindex="0">
+                      <img id="channel-icon-preview" class="admin-thumb-preview admin-channel-preview" alt="" hidden>
+                      <input type="file" id="field-channel-icon" accept="image/*" hidden>
+                      <button type="button" id="channel-icon-pick" class="btn btn-ghost btn-sm">Upload icon</button>
+                      <button type="button" id="channel-icon-clear" class="btn btn-ghost btn-sm" hidden>Remove</button>
+                      <span class="admin-drop-hint">paste, drop, or pick</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="admin-field admin-field--full">
+                <div class="admin-section-head">
+                  <h3>A/B/C variants</h3>
+                  <button type="button" id="admin-add-variant" class="btn btn-ghost btn-sm">+ Add variant</button>
+                </div>
+                <div id="admin-variants" class="admin-variants"></div>
+              </div>
+
+              <div class="admin-field admin-field--full">
+                <h3>Homepage preview</h3>
+                <div id="admin-homepage-grid" class="admin-homepage-grid" aria-hidden="true"></div>
+              </div>
+            </div>
+          </form>
+        </main>
+      </div>
+      </div>
+
+      <div id="admin-panel-homepage" class="admin-tab-panel" hidden>
+        <div class="admin-homepage-panel">
+          <div class="admin-homepage-head">
+            <div>
+              <h2>Homepage thumbnail wall</h2>
+              <p class="admin-panel-lead">The 10 images below the reviews section. Assign a portfolio item to each slot, then upload its image.</p>
+            </div>
+            <button type="button" id="admin-homepage-save" class="btn btn-primary btn-sm">Save homepage</button>
+          </div>
+          <div id="admin-wall-slots" class="admin-slot-grid"></div>
+
+          <div class="admin-homepage-section">
+            <h2>Homepage hero animation</h2>
+            <p class="admin-panel-lead">The Lottie in the homepage hero. Uses <code>me_plus_hand/justGUY.png</code> (portrait) and <code>justHAND.png</code> (hand). After replacing either image, run <code>npm run build:hero-lottie</code>.</p>
+            <div id="admin-hero-lottie" class="admin-slot-grid admin-slot-grid--story"></div>
+          </div>
+
+          <div class="admin-homepage-section">
+            <h2>Why hire Kaalkine</h2>
+            <p class="admin-panel-lead">Three images in the “Why should you hire Kaalkine?” section. Use a portfolio thumbnail or upload a custom image.</p>
+            <div id="admin-why-hire" class="admin-slot-grid admin-slot-grid--why"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-panel-story" class="admin-tab-panel" hidden>
+        <div class="admin-homepage-panel">
+          <div class="admin-homepage-head">
+            <div>
+              <h2>My Story illustrations</h2>
+              <p class="admin-panel-lead">Hero bobblehead source images and the three story section illustrations. Bobble images need a Lottie rebuild after upload.</p>
+            </div>
+            <button type="button" id="admin-story-save" class="btn btn-primary btn-sm">Save story images</button>
+          </div>
+          <div id="admin-story-slots" class="admin-slot-grid admin-slot-grid--story"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-toast" class="admin-toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/github-store.js"></script>
+  <script src="../js/admin-upload.js"></script>
+  <script src="../js/admin-homepage.js"></script>
+  <script src="../js/admin-story.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

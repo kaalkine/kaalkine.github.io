@@ -1,0 +1,16 @@
+{
+  "githubOwner": "kaalkine",
+  "githubRepo": "kaalkine.github.io",
+  "branch": "main",
+  "portfolioPath": "data/portfolio.json",
+  "sitePath": "data/site.json",
+  "assetsDir": "assets/portfolio",
+  "channelIconsDir": "assets/portfolio/channels",
+  "homepageImagesDir": "assets/homepage",
+  "storyImagesDir": "assets/story",
+  "storyBobbleBodyPath": "my_story_page/image_one_body.png",
+  "storyBobbleHeadPath": "my_story_page/image_one_head.png",
+  "heroPortraitPath": "me_plus_hand/justGUY.png",
+  "heroHandPath": "me_plus_hand/justHAND.png",
+  "brandLogoPath": "assets/brand/kaalkine-logo.svg"
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kaalkine thumbnail portfolio. Browse custom YouTube thumbnails by niche.">
+  <title>Kaalkine | Portfolio</title>
+  <link rel="icon" href="assets/brand/kaalkine-logo.svg?v=1781414620712" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@700;800;900&family=Alumni+Sans+Pinstripe&family=Albert+Sans:wght@0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-portfolio">
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <img class="logo-mark" src="assets/brand/kaalkine-logo.svg?v=1781414620712" alt="" decoding="async">
+        <span class="logo-text">Kaalkine</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" aria-label="Main navigation"></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="portfolio-hero">
+      <div class="portfolio-hero-inner">
+        <h1 class="reveal reveal-up">Behold: the Thumbnail Wall</h1>
+        <p class="portfolio-hero-lead reveal reveal-up reveal-delay-1"></p>
+      </div>
+    </section>
+
+    <section class="portfolio-filters reveal-fade" aria-label="Filter portfolio by niche">
+      <div class="portfolio-filters-inner">
+        <div class="portfolio-hero-cta reveal reveal-up reveal-delay-2"></div>
+        <div class="portfolio-sort" id="portfolio-sort"></div>
+      </div>
+    </section>
+
+    <section class="portfolio-wall">
+      <div class="portfolio-grid"></div>
+    </section>
+
+    <section class="portfolio-mid-cta reveal reveal-up">
+      <a href="contact.html" class="btn btn-primary portfolio-talk-btn"></a>
+    </section>
+
+    <section class="footer-cta footer-cta-band">
+      <div class="container">
+        <h2 class="reveal reveal-up">Make your first
+Impressions count.</h2>
+        <a href="contact.html" class="btn btn-dark btn-lg btn-expand reveal reveal-up reveal-delay-1">
+          <span class="btn-label">Let's do this!</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10.25" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11 8.5 14.5 12 11 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© Kaalkine 2026</p>
+      <div class="social-links"></div>
+    </div>
+  </footer>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Thumbnail detail" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <div class="lightbox-content">
+      <div class="lightbox-image-wrap"></div>
+      <div class="lightbox-variants"></div>
+      <div class="lightbox-info">
+        <h2></h2>
+        <div class="lightbox-meta"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/manimate.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/reveals.js"></script>
+  <script src="js/portfolio.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

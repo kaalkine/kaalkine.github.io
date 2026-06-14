@@ -1,0 +1,312 @@
+{
+  "niches": [
+    "Cooking",
+    "Sports",
+    "Educational",
+    "Finance",
+    "Lifestyle",
+    "Art",
+    "Entertainment",
+    "Other"
+  ],
+  "items": [
+    {
+      "id": "thumb-01",
+      "title": "I Learned 50 Skills in 30 Days",
+      "client": "Mike Rivers",
+      "views": "1M+ views",
+      "niche": "Lifestyle",
+      "date": "2026-03-15",
+      "image": "assets/portfolio/thumb-01.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-01.svg"
+        },
+        {
+          "label": "B",
+          "image": "assets/portfolio/thumb-01b.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 1
+    },
+    {
+      "id": "thumb-02",
+      "title": "This Game Changed Everything",
+      "client": "GameDev Pal",
+      "views": "100k+ views",
+      "niche": "Entertainment",
+      "date": "2026-03-10",
+      "image": "assets/portfolio/thumb-02.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-02.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 2
+    },
+    {
+      "id": "thumb-03",
+      "title": "STOP Making This Golf Mistake",
+      "client": "Simple Golf",
+      "views": "500k+ views",
+      "niche": "Sports",
+      "date": "2026-03-05",
+      "image": "assets/portfolio/thumb-03.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-03.svg"
+        },
+        {
+          "label": "B",
+          "image": "assets/portfolio/thumb-03b.svg"
+        },
+        {
+          "label": "C",
+          "image": "assets/portfolio/thumb-03c.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 3
+    },
+    {
+      "id": "thumb-04",
+      "title": "How I Built a $10K Passive Income",
+      "client": "Wealth Channel",
+      "views": "100k+ views",
+      "niche": "Finance",
+      "date": "2026-02-28",
+      "image": "assets/portfolio/thumb-04.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-04.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 4
+    },
+    {
+      "id": "thumb-05",
+      "title": "I Ate The Spiciest Food From Every Country",
+      "client": "Food Explorer",
+      "views": "1M+ views",
+      "niche": "Cooking",
+      "date": "2026-02-20",
+      "image": "assets/portfolio/thumb-05.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-05.svg"
+        },
+        {
+          "label": "B",
+          "image": "assets/portfolio/thumb-05b.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 5
+    },
+    {
+      "id": "thumb-06",
+      "title": "Why Your Code Is Slow (And How To Fix It)",
+      "client": "Dev Daily",
+      "views": "250k+ views",
+      "niche": "Other",
+      "date": "2026-02-15",
+      "image": "assets/portfolio/thumb-06.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-06.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 6
+    },
+    {
+      "id": "thumb-07",
+      "title": "Epic Red Bull Challenge Gone Wrong",
+      "client": "Adventure Co",
+      "views": "100k+ views",
+      "niche": "Sports",
+      "date": "2026-02-10",
+      "image": "assets/portfolio/thumb-07.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-07.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 7
+    },
+    {
+      "id": "thumb-08",
+      "title": "How Nike Won The Sneaker War",
+      "client": "Sneaker History",
+      "views": "100k+ views",
+      "niche": "Lifestyle",
+      "date": "2026-02-05",
+      "image": "assets/portfolio/thumb-08.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-08.svg"
+        },
+        {
+          "label": "B",
+          "image": "assets/portfolio/thumb-08b.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 8
+    },
+    {
+      "id": "thumb-09",
+      "title": "I Survived 24 Hours in a Haunted House",
+      "client": "Horror Hub",
+      "views": "500k+ views",
+      "niche": "Entertainment",
+      "date": "2026-01-28",
+      "image": "assets/portfolio/thumb-09.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-09.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 9
+    },
+    {
+      "id": "thumb-10",
+      "title": "The Psychology of Viral Videos",
+      "client": "Creator Academy",
+      "views": "100k+ views",
+      "niche": "Educational",
+      "date": "2026-01-20",
+      "image": "assets/portfolio/thumb-10.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-10.svg"
+        }
+      ],
+      "showChannel": true,
+      "homepageSlot": 10
+    },
+    {
+      "id": "thumb-11",
+      "title": "Making Pasta in a Parmesan Wheel",
+      "client": "Chef Studio",
+      "views": "1M+ views",
+      "niche": "Cooking",
+      "date": "2026-01-15",
+      "image": "assets/portfolio/thumb-11.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-11.svg"
+        }
+      ],
+      "showChannel": true
+    },
+    {
+      "id": "thumb-12",
+      "title": "How To Level Up Your Game Dev Portfolio",
+      "client": "Indie Dev",
+      "views": "100k+ views",
+      "niche": "Art",
+      "date": "2026-01-10",
+      "image": "assets/portfolio/thumb-12.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-12.svg"
+        },
+        {
+          "label": "B",
+          "image": "assets/portfolio/thumb-12b.svg"
+        }
+      ],
+      "showChannel": true
+    },
+    {
+      "id": "thumb-13",
+      "title": "I Tested Every AI Tool So You Don't Have To",
+      "client": "Tech Review",
+      "views": "300k+ views",
+      "niche": "Other",
+      "date": "2026-01-05",
+      "image": "assets/portfolio/thumb-13.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-13.svg"
+        }
+      ],
+      "showChannel": true
+    },
+    {
+      "id": "thumb-14",
+      "title": "Football vs Basketball: Who Wins?",
+      "client": "Sports Central",
+      "views": "1M+ views",
+      "niche": "Sports",
+      "date": "2024-11-28",
+      "image": "assets/portfolio/thumb-14.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-14.svg"
+        },
+        {
+          "label": "B",
+          "image": "assets/portfolio/thumb-14b.svg"
+        },
+        {
+          "label": "C",
+          "image": "assets/portfolio/thumb-14c.svg"
+        }
+      ],
+      "showChannel": true
+    },
+    {
+      "id": "thumb-15",
+      "title": "We Hatched The Tiniest Eggs From Amazon",
+      "client": "Farm Life",
+      "views": "100k+ views",
+      "niche": "Lifestyle",
+      "date": "2024-10-20",
+      "image": "assets/portfolio/thumb-15.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-15.svg"
+        }
+      ],
+      "showChannel": true
+    },
+    {
+      "id": "thumb-16",
+      "title": "How To Start Your First YouTube Channel",
+      "client": "Growth Lab",
+      "views": "100k+ views",
+      "niche": "Educational",
+      "date": "2024-09-15",
+      "image": "assets/portfolio/thumb-16.svg",
+      "variants": [
+        {
+          "label": "A",
+          "image": "assets/portfolio/thumb-16.svg"
+        }
+      ],
+      "showChannel": false
+    }
+  ]
+}

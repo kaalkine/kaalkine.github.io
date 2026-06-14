@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <rect width="1920" height="1080" fill="#1a1922"/>
+  <rect x="64" y="64" width="1792" height="952" rx="16" fill="none" stroke="#305CDE" stroke-width="4" opacity="0.25"/>
+  <rect x="120" y="120" width="1680" height="840" rx="8" fill="#22212c"/>
+  <text x="960" y="500" text-anchor="middle" fill="#6E8DE8" font-family="system-ui, sans-serif" font-size="72" font-weight="700">1920 × 1080</text>
+  <text x="960" y="590" text-anchor="middle" fill="#888894" font-family="system-ui, sans-serif" font-size="36" font-weight="600">Thumbnail placeholder</text>
+</svg>

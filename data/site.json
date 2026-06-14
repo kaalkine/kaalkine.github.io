@@ -1,0 +1,295 @@
+{
+  "brand": {
+    "name": "Kaalkine",
+    "tagline": "YouTube Thumbnail Expert",
+    "copyright": "Kaalkine 2026",
+    "logo": "assets/brand/kaalkine-logo.svg",
+    "logoVersion": "1781414620712"
+  },
+  "formspreeEndpoint": "https://formspree.io/f/xlgkwzdn",
+  "nav": [
+    {
+      "label": "Home",
+      "href": "index.html"
+    },
+    {
+      "label": "Portfolio",
+      "href": "portfolio.html"
+    },
+    {
+      "label": "My Story",
+      "href": "story.html"
+    },
+    {
+      "label": "Hire Me Today",
+      "href": "contact.html",
+      "cta": true
+    }
+  ],
+  "socials": [
+    {
+      "label": "X / Twitter",
+      "href": "https://twitter.com/kaalkine",
+      "icon": "x"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://instagram.com/kaalkine",
+      "icon": "instagram"
+    },
+    {
+      "label": "Discord",
+      "href": "https://discord.gg/RqFnqZh4",
+      "icon": "discord"
+    },
+    {
+      "label": "YouTube",
+      "href": "https://youtube.com/@kaalkine",
+      "icon": "youtube",
+      "footer": false
+    }
+  ],
+  "hero": {
+    "headline": "You only get one first impression. Make it count.",
+    "subheadline": "On YouTube, attention is tough to catch. Thankfully, you found an expert.",
+    "ctaPrimary": {
+      "label": "Get in touch",
+      "href": "contact.html"
+    },
+    "ctaSecondary": {
+      "label": "View Portfolio",
+      "href": "portfolio.html"
+    }
+  },
+  "trustedBy": {
+    "creators": [
+      {
+        "name": "Alex Hormozi",
+        "subscribers": "4.3M",
+        "href": "https://www.youtube.com/@AlexHormozi",
+        "image": "assets/trusted/alex-hormozi.jpg"
+      },
+      {
+        "name": "Kallaway",
+        "subscribers": "400K",
+        "href": "https://www.youtube.com/@kallawaymarketing",
+        "image": "assets/trusted/kallaway.jpg"
+      },
+      {
+        "name": "Yummers",
+        "subscribers": "37.6K",
+        "href": "https://www.youtube.com/@yummers3",
+        "image": "assets/trusted/yummers.jpg"
+      },
+      {
+        "name": "Ricc Doyne",
+        "subscribers": "229K",
+        "href": "https://www.youtube.com/@riccdoyne",
+        "image": "assets/trusted/rick-doyne.jpg"
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "quote": "Kaalkine understands packaging at a business level. The thumbnails are sharp, the strategy is clear, and the turnaround is fast. Exactly what you want when every upload matters.",
+      "name": "Alex Hormozi",
+      "role": "youtuber (4.3M)",
+      "href": "https://www.youtube.com/@AlexHormozi",
+      "image": "assets/trusted/alex-hormozi.jpg"
+    },
+    {
+      "quote": "The hooks and visual storytelling in Kaalkine's work are elite. He thinks like a growth strategist, not just a designer, and our CTR jumped immediately.",
+      "name": "Kallaway",
+      "role": "youtuber (400K)",
+      "href": "https://www.youtube.com/@kallawaymarketing",
+      "image": "assets/trusted/kallaway.jpg"
+    },
+    {
+      "quote": "Insane attention to detail and genuinely fun to work with. Kaalkine gets the joke, gets the audience, and still makes thumbnails that pop in the feed.",
+      "name": "Yummers",
+      "role": "youtuber (37.6K)",
+      "href": "https://www.youtube.com/@yummers3",
+      "image": "assets/trusted/yummers.jpg"
+    },
+    {
+      "quote": "Every thumbnail feels native to the channel but still stops the scroll. Kaalkine is one of the few designers who actually studies what works before he designs.",
+      "name": "Ricc Doyne",
+      "role": "youtuber (229K)",
+      "href": "https://www.youtube.com/@riccdoyne",
+      "image": "assets/trusted/rick-doyne.jpg"
+    },
+    {
+      "quote": "Kaalkine thinks like a strategist and designs like a pro, the kind of partner we trust for fast turnarounds, clean revisions, and thumbnails that actually move CTR.",
+      "name": "Clickables",
+      "role": "design agency",
+      "href": "https://www.clickables.co/",
+      "image": "assets/trusted/clickables.png"
+    }
+  ],
+  "valueProps": [
+    {
+      "title": "Great thumbnails are essential.",
+      "body": "Hours of scripting, filming, editing, and it could all go unseen if your title and thumbnail aren't remarkable. As MrBeast keeps repeating in interviews: \"If they don't click, they don't watch.\""
+    },
+    {
+      "title": "Make every click matter.",
+      "body": "Good packaging attracts curious visitors, but remarkable packaging attracts viewers who actually care and stick around. Let's get you some new fans and grow your channel!"
+    }
+  ],
+  "process": {
+    "title": "YouTube Thumbnails Made Easy",
+    "subtitle": "My streamlined process means there's only a few steps between you and the custom thumbnail designs of your dreams.",
+    "steps": [
+      {
+        "title": "Reach out",
+        "icon": "send",
+        "body": "Fill out my contact form and provide important information on your design needs, such as how many thumbnails you want or what your channel is about."
+      },
+      {
+        "title": "Strategize",
+        "icon": "wand",
+        "body": "We discuss your video idea(s) in further detail, so we can come up with design concepts that have a high chance of performing well with your audience."
+      },
+      {
+        "title": "Deliver",
+        "icon": "target",
+        "body": "Once we've agreed on a concept, all that's left is for me to design your thumbnails and implement your feedback. Upload, and hope we hit a 1 of 10!"
+      }
+    ],
+    "cta": {
+      "label": "Get in touch",
+      "href": "contact.html"
+    }
+  },
+  "whyHire": {
+    "title": "Why should you hire Kaalkine?",
+    "pillars": [
+      {
+        "title": "I design thumbnails that get clicked without feeling fake.",
+        "body": "I'm strongly anti-clickbait. A great thumbnail should create curiosity, match the video, and strengthen your brand, not trick the viewer. I focus on thumbnails that help creators earn clicks while keeping audience trust intact.",
+        "portfolioItemId": "thumb-01",
+        "imageIndex": 0
+      },
+      {
+        "title": "I've worked with creators, agencies, and high-performing channels.",
+        "body": "I've been designing thumbnails for the past 4 years and have worked with multiple creators and agencies, including Clickables and Nutty History for over half a year. My work has supported channels aiming for stronger CTR, better packaging, and millions of views.",
+        "portfolioItemId": "thumb-05",
+        "imageIndex": 4
+      },
+      {
+        "title": "I know how to make thumbnails feel premium.",
+        "body": "I'm highly skilled in Photoshop and focus on strong composition, clean storytelling, clear focal points, and bold visual hierarchy. My goal is to make your video instantly understandable and impossible to ignore.",
+        "portfolioItemId": "thumb-08",
+        "imageIndex": 7
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Are you currently available for work?",
+      "answer": "Yes! I'm currently accepting new clients. Reach out via the contact form and I'll get back to you within 24-48 hours with availability and next steps."
+    },
+    {
+      "question": "Do you provide concepts, or just designs?",
+      "answer": "Both. Every project starts with concept sketches and direction before I move into full design. You're involved at every stage so there are no surprises."
+    },
+    {
+      "question": "What's your creative process like? (Step-by-step)",
+      "answer": "1) You fill out the contact form with project details. 2) We hop on a brief call or chat to align on the video and audience. 3) I send concept directions. 4) You pick a direction and give feedback. 5) I deliver the final thumbnail(s) with revisions included."
+    },
+    {
+      "question": "How do you handle feedback and A/B Testing?",
+      "answer": "I include revision rounds in every project. For A/B testing, I can deliver multiple variants optimized for different hooks, perfect for channels that test thumbnails before publishing."
+    },
+    {
+      "question": "What's your usual turnaround time?",
+      "answer": "Most projects are delivered within 1-3 business days after we agree on a concept. Rush orders may be available, so ask when you reach out."
+    },
+    {
+      "question": "How much will my order cost?",
+      "answer": "Pricing depends on complexity, number of thumbnails, and whether you need source files. Fill out the contact form with your project details and I'll send a custom quote."
+    }
+  ],
+  "footerCta": {
+    "headline": "Make your first\nImpressions count.",
+    "subheadline": "Let's do this!",
+    "href": "contact.html"
+  },
+  "story": {
+    "hero": {
+      "headline": "Not just a \"Photoshop\" guy.",
+      "body": [
+        "I'm Kaalkine, a thumbnail designer with 5+ years of experience working with creators and agencies. Thumbnail design isn't a side gig for me. It's the craft I've spent years building around."
+      ]
+    },
+    "blocks": [
+      {
+        "id": "studied",
+        "headline": "I trained for this...",
+        "body": [
+          "Over the years, I've worked with all kinds of creators, niches, and styles, which taught me how to think beyond just making things look good. I learned how to use composition, color, contrast, and storytelling to make people stop scrolling."
+        ],
+        "layout": "text-left",
+        "illustration": "path"
+      },
+      {
+        "id": "advantage",
+        "headline": "My unfair advantage:",
+        "body": [
+          "A lot of people treat thumbnail design like a quick freelance skill. My story is different. This is what I genuinely specialize in.",
+          "I've worked with agencies like Clickables and Nutty History, and I've made thumbnails for creators and channels connected to names like Alex Hormozi, My First Million, Kallaway, and Yummers.",
+          "When you hire me, you're not getting someone who just knows Photoshop. You're getting someone who understands packaging, attention, and how to turn an idea into something people feel drawn to click."
+        ],
+        "layout": "text-right",
+        "illustration": "face"
+      },
+      {
+        "id": "playground",
+        "headline": "Your channel, my playground",
+        "body": [
+          "Thumbnail design is the kind of work I enjoy most. It's creative, strategic, and every video brings a new problem to solve.",
+          "I see every thumbnail as a challenge: how do I communicate the strongest idea in the clearest, most clickable way possible?",
+          "When we work together, I'm not just trying to make your channel look better. I'm trying to help it perform better too."
+        ],
+        "layout": "text-left",
+        "illustration": "puzzle"
+      }
+    ]
+  },
+  "portfolio": {
+    "headline": "Behold: the Thumbnail Wall",
+    "subtitle": "Below are thumbnails I've worked on, sorted from most recent to oldest. Click to see them in detail, or toggle between multiple versions when designed with A/B testing in mind. Filter by niche. Happy scrolling!",
+    "cta": {
+      "label": "I like what I see - Let's talk!",
+      "href": "contact.html"
+    }
+  },
+  "contact": {
+    "headline": "Get in touch with Kaalkine",
+    "subtitle": "Fill out the form below to lay the foundation of a partnership that will change your YouTube fortunes. Let me know what you want, and if I can provide the service you need, I'll get in touch ASAP!",
+    "discordNote": "I reply much faster on Discord, so for a lot of clients this is a better option. I'm faster in my replies. There is going to be an easier back and forth, and it is just simpler to share references and ideas.",
+    "discordHandle": "@kaalkine",
+    "platforms": [
+      "Email",
+      "Discord",
+      "X / Twitter",
+      "Instagram"
+    ],
+    "pricing": {
+      "currency": "USD",
+      "symbol": "$",
+      "perThumbnail": 40,
+      "turnaround": {
+        "1": "1-3 DAYS",
+        "2": "1-3 DAYS",
+        "3": "1-3 DAYS",
+        "4": "1-3 DAYS",
+        "default": "1-3 DAYS"
+      },
+      "footnotes": [
+        "* Estimated total. Final quote confirmed after reviewing your project.",
+        "** Turnaround begins once we agree on a concept direction."
+      ]
+    }
+  }
+}
