@@ -28,22 +28,6 @@
       "homepageSlot": 9
     },
     {
-      "id": "thumb-13",
-      "title": "I Tested Every AI Tool So You Don't Have To",
-      "client": "Tech Review",
-      "views": "300k+ views",
-      "niche": "Other",
-      "date": "2026-01-05",
-      "image": "assets/portfolio/thumb-13.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-13.svg"
-        }
-      ],
-      "showChannel": true
-    },
-    {
       "id": "thumb-15",
       "title": "We Hatched The Tiniest Eggs From Amazon",
       "client": "Farm Life",
