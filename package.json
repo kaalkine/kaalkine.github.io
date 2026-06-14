@@ -1,0 +1,17 @@
+{
+  "name": "kaalkine-portfolio",
+  "private": true,
+  "scripts": {
+    "build:hero-lottie": "node scripts/build-hero-lottie.mjs",
+    "build:story-bobble-lottie": "node scripts/build-story-bobble-lottie.mjs",
+    "optimize:brand-logo": "node scripts/optimize-brand-logo.mjs",
+    "build:lotties": "npm run build:hero-lottie && npm run build:story-bobble-lottie",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "serve": "^14.2.4",
+    "sharp": "^0.35.0"
+  }
+}
