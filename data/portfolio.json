@@ -45,27 +45,6 @@
       "homepageSlot": 7
     },
     {
-      "id": "thumb-08",
-      "title": "How Nike Won The Sneaker War",
-      "client": "Sneaker History",
-      "views": "100k+ views",
-      "niche": "Lifestyle",
-      "date": "2026-02-05",
-      "image": "assets/portfolio/thumb-08.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-08.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-08b.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 8
-    },
-    {
       "id": "thumb-09",
       "title": "I Survived 24 Hours in a Haunted House",
       "client": "Horror Hub",
