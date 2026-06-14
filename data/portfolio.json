@@ -45,22 +45,6 @@
       "homepageSlot": 9
     },
     {
-      "id": "thumb-11",
-      "title": "Making Pasta in a Parmesan Wheel",
-      "client": "Chef Studio",
-      "views": "1M+ views",
-      "niche": "Cooking",
-      "date": "2026-01-15",
-      "image": "assets/portfolio/thumb-11.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-11.svg"
-        }
-      ],
-      "showChannel": true
-    },
-    {
       "id": "thumb-13",
       "title": "I Tested Every AI Tool So You Don't Have To",
       "client": "Tech Review",
