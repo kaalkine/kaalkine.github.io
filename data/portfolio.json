@@ -28,8 +28,7 @@
           "image": "assets/portfolio/thumb-01b.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 1
+      "showChannel": true
     },
     {
       "id": "thumb-02",
@@ -45,8 +44,7 @@
           "image": "assets/portfolio/thumb-02.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 2
+      "showChannel": true
     },
     {
       "id": "thumb-03",
@@ -70,8 +68,7 @@
           "image": "assets/portfolio/thumb-03c.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 3
+      "showChannel": true
     },
     {
       "id": "thumb-04",
@@ -87,8 +84,7 @@
           "image": "assets/portfolio/thumb-04.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 4
+      "showChannel": true
     },
     {
       "id": "thumb-05",
@@ -108,8 +104,7 @@
           "image": "assets/portfolio/thumb-05b.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 5
+      "showChannel": true
     },
     {
       "id": "thumb-06",
@@ -125,8 +120,7 @@
           "image": "assets/portfolio/thumb-06.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 6
+      "showChannel": true
     },
     {
       "id": "thumb-07",
@@ -142,8 +136,7 @@
           "image": "assets/portfolio/thumb-07.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 7
+      "showChannel": true
     },
     {
       "id": "thumb-08",
@@ -163,8 +156,7 @@
           "image": "assets/portfolio/thumb-08b.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 8
+      "showChannel": true
     },
     {
       "id": "thumb-09",
@@ -180,8 +172,7 @@
           "image": "assets/portfolio/thumb-09.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 9
+      "showChannel": true
     },
     {
       "id": "thumb-10",
@@ -197,8 +188,7 @@
           "image": "assets/portfolio/thumb-10.svg"
         }
       ],
-      "showChannel": true,
-      "homepageSlot": 10
+      "showChannel": true
     },
     {
       "id": "thumb-11",

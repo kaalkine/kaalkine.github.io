@@ -126,6 +126,18 @@
       "image": "assets/trusted/clickables.png"
     }
   ],
+  "homepageWall": [
+    "assets/portfolio/thumb-01.svg",
+    "assets/portfolio/thumb-02.svg",
+    "assets/portfolio/thumb-03.svg",
+    "assets/portfolio/thumb-04.svg",
+    "assets/portfolio/thumb-05.svg",
+    "assets/portfolio/thumb-06.svg",
+    "assets/portfolio/thumb-07.svg",
+    "assets/portfolio/thumb-08.svg",
+    "assets/portfolio/thumb-09.svg",
+    "assets/portfolio/thumb-10.svg"
+  ],
   "valueProps": [
     {
       "title": "Great thumbnails are essential.",

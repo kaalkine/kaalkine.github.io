@@ -210,6 +210,12 @@ const GitHubStore = {
     return result;
   },
 
+  homepageWallImagePath(slot, ext) {
+    const { homepageImagesDir } = this.config;
+    const num = String(slot).padStart(2, "0");
+    return `${homepageImagesDir}/wall-${num}${ext}`;
+  },
+
   whyHireImagePath(index, ext) {
     const { homepageImagesDir } = this.config;
     return `${homepageImagesDir}/why-hire-${index + 1}${ext}`;
