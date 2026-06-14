@@ -62,23 +62,6 @@
       "homepageSlot": 9
     },
     {
-      "id": "thumb-10",
-      "title": "The Psychology of Viral Videos",
-      "client": "Creator Academy",
-      "views": "100k+ views",
-      "niche": "Educational",
-      "date": "2026-01-20",
-      "image": "assets/portfolio/thumb-10.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-10.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 10
-    },
-    {
       "id": "thumb-11",
       "title": "Making Pasta in a Parmesan Wheel",
       "client": "Chef Studio",
