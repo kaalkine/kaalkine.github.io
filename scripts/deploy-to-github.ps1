@@ -40,6 +40,9 @@ if (-not $exists) {
   Write-Host "Repository already exists"
 }
 
+Write-Host "==> Configuring git to use gh credentials..."
+gh auth setup-git | Out-Null
+
 Write-Host "==> Configuring git remote..."
 $remoteUrl = "https://github.com/$owner/$repo.git"
 if (git remote get-url origin 2>$null) {
