@@ -11,23 +11,6 @@
   ],
   "items": [
     {
-      "id": "thumb-04",
-      "title": "How I Built a $10K Passive Income",
-      "client": "Wealth Channel",
-      "views": "100k+ views",
-      "niche": "Finance",
-      "date": "2026-02-28",
-      "image": "assets/portfolio/thumb-04.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-04.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 4
-    },
-    {
       "id": "thumb-05",
       "title": "I Ate The Spiciest Food From Every Country",
       "client": "Food Explorer",
