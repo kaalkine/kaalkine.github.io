@@ -61,26 +61,6 @@
       "showChannel": true
     },
     {
-      "id": "thumb-12",
-      "title": "How To Level Up Your Game Dev Portfolio",
-      "client": "Indie Dev",
-      "views": "100k+ views",
-      "niche": "Art",
-      "date": "2026-01-10",
-      "image": "assets/portfolio/thumb-12.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-12.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-12b.svg"
-        }
-      ],
-      "showChannel": true
-    },
-    {
       "id": "thumb-13",
       "title": "I Tested Every AI Tool So You Don't Have To",
       "client": "Tech Review",
