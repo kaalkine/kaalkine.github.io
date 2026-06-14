@@ -11,27 +11,6 @@
   ],
   "items": [
     {
-      "id": "thumb-05",
-      "title": "I Ate The Spiciest Food From Every Country",
-      "client": "Food Explorer",
-      "views": "1M+ views",
-      "niche": "Cooking",
-      "date": "2026-02-20",
-      "image": "assets/portfolio/thumb-05.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-05.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-05b.svg"
-        }
-      ],
-      "showChannel": true,
-      "homepageSlot": 5
-    },
-    {
       "id": "thumb-06",
       "title": "Why Your Code Is Slow (And How To Fix It)",
       "client": "Dev Daily",
