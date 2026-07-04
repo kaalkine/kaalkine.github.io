@@ -15,7 +15,6 @@ const root = path.join(__dirname, "..");
 const sourcePath = path.join(root, "assets", "brand", "tosvgNOW.svg");
 const logoPath = path.join(root, "assets", "brand", "kaalkine-logo.svg");
 const sitePath = path.join(root, "data", "site.json");
-const adminConfigPath = path.join(root, "data", "admin-config.json");
 
 /** Edge matte fills from vector export — not part of the logo mark. */
 const EDGE_MATTE_FILLS = new Set(["#ffffff", "#fefeff", "#ebf0f7", "#67e6f5"]);
@@ -58,18 +57,11 @@ function bumpLogoVersion() {
   site.brand.logoVersion = version;
   fs.writeFileSync(sitePath, `${JSON.stringify(site, null, 2)}\n`);
 
-  if (fs.existsSync(adminConfigPath)) {
-    const adminConfig = JSON.parse(fs.readFileSync(adminConfigPath, "utf8"));
-    adminConfig.brandLogoPath = "assets/brand/kaalkine-logo.svg";
-    fs.writeFileSync(adminConfigPath, `${JSON.stringify(adminConfig, null, 2)}\n`);
-  }
-
   const htmlFiles = [
     "index.html",
     "portfolio.html",
     "story.html",
     "contact.html",
-    "krishnanandg/index.html",
   ];
 
   for (const rel of htmlFiles) {

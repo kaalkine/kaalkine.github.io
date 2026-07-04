@@ -41,27 +41,21 @@ test.describe("page smoke tests", () => {
 });
 
 test.describe("portfolio", () => {
-  test("grid renders 60 items", async ({ page }) => {
+  test("grid renders one card per portfolio item", async ({ page }) => {
     await page.goto("/portfolio.html");
     await expect(page.locator(".portfolio-card").first()).toBeVisible();
-    await expect(page.locator(".portfolio-card")).toHaveCount(60);
+
+    const itemCount = await page.evaluate(async () => {
+      const res = await fetch("data/portfolio.json");
+      const data = await res.json();
+      return data.items.length;
+    });
+
+    expect(itemCount).toBeGreaterThan(0);
+    await expect(page.locator(".portfolio-card")).toHaveCount(itemCount);
   });
 
-  test("niche filter reduces visible items", async ({ page }) => {
-    await page.goto("/portfolio.html");
-    await expect(page.locator(".portfolio-card").first()).toBeVisible({ timeout: 10000 });
-    const allCount = await page.locator(".portfolio-card").count();
-    expect(allCount).toBe(60);
-
-    await page.locator(".portfolio-sort-trigger").click();
-    await page.locator('.portfolio-sort-option[data-value="Sports"]').click();
-
-    const filteredCount = await page.locator(".portfolio-card").count();
-    expect(filteredCount).toBeLessThan(allCount);
-    expect(filteredCount).toBeGreaterThan(0);
-  });
-
-  test("lightbox variant tabs switch the image", async ({ page }) => {
+  test("lightbox opens on card click", async ({ page }) => {
     await page.goto("/portfolio.html");
     await page.locator('.portfolio-card[data-id="thumb-01"]').click();
 
@@ -70,10 +64,7 @@ test.describe("portfolio", () => {
     await expect(lightbox).toHaveAttribute("aria-hidden", "false");
 
     const img = page.locator(".lightbox-image-wrap img");
-    await expect(img).toHaveAttribute("src", /thumb-01\.svg$/);
-
-    await page.locator(".variant-tab", { hasText: "B" }).click();
-    await expect(img).toHaveAttribute("src", /thumb-01b\.svg$/);
+    await expect(img).toHaveAttribute("src", /thumb-01\.jpg$/);
 
     await page.keyboard.press("Escape");
     await expect(lightbox).not.toHaveClass(/open/);
@@ -91,34 +82,21 @@ test.describe("portfolio", () => {
       .locator('.portfolio-card[data-id="thumb-02"] img')
       .getAttribute("src");
 
-    expect(srcA).toMatch(/thumb-01\.svg/);
-    expect(srcB).toMatch(/thumb-02\.svg/);
+    expect(srcA).toMatch(/thumb-01\.jpg/);
+    expect(srcB).toMatch(/thumb-02\.png/);
     expect(srcA).not.toBe(srcB);
   });
 });
 
-test.describe("admin", () => {
-  test("/krishnanandg/ loads unlock gate without site nav", async ({ page }) => {
-    await page.goto("/krishnanandg/");
-    await expect(page.locator("#admin-gate")).toBeVisible();
-    await expect(page.locator("#admin-shell")).toBeHidden();
-    await expect(page.locator("#admin-auth-form button[type='submit']")).toContainText(/unlock/i);
-    await expect(page.locator("nav.nav-links")).toHaveCount(0);
+test.describe("no admin", () => {
+  test("admin entry is gone", async ({ page }) => {
+    const response = await page.goto("/krishnanandg/");
+    expect(response?.status()).toBeGreaterThanOrEqual(400);
   });
 
   test("main site nav does not link to admin", async ({ page }) => {
     await page.goto("/index.html");
     await expect(page.locator('a[href*="krishnanandg"]')).toHaveCount(0);
-  });
-});
-
-test.describe("portfolio channel display", () => {
-  test("showChannel false hides client on portfolio card", async ({ page }) => {
-    await page.goto("/portfolio.html");
-    const card = page.locator('.portfolio-card[data-id="thumb-16"]');
-    await expect(card).toBeVisible();
-    await expect(card.locator(".portfolio-card-client")).toHaveCount(0);
-    await expect(card.locator(".portfolio-card-avatar")).toHaveCount(0);
   });
 });
 
@@ -145,12 +123,12 @@ test.describe("utilities", () => {
     const result = await page.evaluate(() => ({
       missing: Manimate.isPlaceholder(null),
       generic: Manimate.isPlaceholder("assets/placeholder-thumb.svg"),
-      itemSvg: Manimate.isPlaceholder("assets/portfolio/thumb-01.svg"),
+      itemJpg: Manimate.isPlaceholder("assets/portfolio/thumb-01.jpg"),
     }));
 
     expect(result.missing).toBe(true);
     expect(result.generic).toBe(true);
-    expect(result.itemSvg).toBe(false);
+    expect(result.itemJpg).toBe(false);
   });
 
   test("escapeHtml neutralizes script tags", async ({ page }) => {

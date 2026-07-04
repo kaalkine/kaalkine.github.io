@@ -1,302 +1,196 @@
 {
-  "niches": [
-    "Cooking",
-    "Sports",
-    "Educational",
-    "Finance",
-    "Lifestyle",
-    "Art",
-    "Entertainment",
-    "Other"
-  ],
   "items": [
     {
       "id": "thumb-01",
-      "title": "I Learned 50 Skills in 30 Days",
-      "client": "Mike Rivers",
-      "views": "1M+ views",
-      "niche": "Lifestyle",
-      "date": "2026-03-15",
-      "image": "assets/portfolio/thumb-01.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-01.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-01b.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-01.jpg",
+      "order": 1,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-02",
-      "title": "This Game Changed Everything",
-      "client": "GameDev Pal",
-      "views": "100k+ views",
-      "niche": "Entertainment",
-      "date": "2026-03-10",
-      "image": "assets/portfolio/thumb-02.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-02.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-02.png",
+      "order": 2,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-03",
-      "title": "STOP Making This Golf Mistake",
-      "client": "Simple Golf",
-      "views": "500k+ views",
-      "niche": "Sports",
-      "date": "2026-03-05",
-      "image": "assets/portfolio/thumb-03.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-03.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-03b.svg"
-        },
-        {
-          "label": "C",
-          "image": "assets/portfolio/thumb-03c.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-03.png",
+      "order": 3,
+      "date": "2026-03-13"
     },
     {
       "id": "thumb-04",
-      "title": "How I Built a $10K Passive Income",
-      "client": "Wealth Channel",
-      "views": "100k+ views",
-      "niche": "Finance",
-      "date": "2026-02-28",
-      "image": "assets/portfolio/thumb-04.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-04.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-04.png",
+      "order": 4,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-05",
-      "title": "I Ate The Spiciest Food From Every Country",
-      "client": "Food Explorer",
-      "views": "1M+ views",
-      "niche": "Cooking",
-      "date": "2026-02-20",
-      "image": "assets/portfolio/thumb-05.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-05.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-05b.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-05.png",
+      "order": 5,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-06",
-      "title": "Why Your Code Is Slow (And How To Fix It)",
-      "client": "Dev Daily",
-      "views": "250k+ views",
-      "niche": "Other",
-      "date": "2026-02-15",
-      "image": "assets/portfolio/thumb-06.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-06.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-06.jpg",
+      "order": 6,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-07",
-      "title": "Epic Red Bull Challenge Gone Wrong",
-      "client": "Adventure Co",
-      "views": "100k+ views",
-      "niche": "Sports",
-      "date": "2026-02-10",
-      "image": "assets/portfolio/thumb-07.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-07.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-07.jpg",
+      "order": 7,
+      "date": "2026-03-09"
     },
     {
       "id": "thumb-08",
-      "title": "How Nike Won The Sneaker War",
-      "client": "Sneaker History",
-      "views": "100k+ views",
-      "niche": "Lifestyle",
-      "date": "2026-02-05",
-      "image": "assets/portfolio/thumb-08.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-08.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-08b.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-08.jpg",
+      "order": 8,
+      "date": "2026-03-08"
     },
     {
       "id": "thumb-09",
-      "title": "I Survived 24 Hours in a Haunted House",
-      "client": "Horror Hub",
-      "views": "500k+ views",
-      "niche": "Entertainment",
-      "date": "2026-01-28",
-      "image": "assets/portfolio/thumb-09.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-09.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-09.jpg",
+      "order": 9,
+      "date": "2026-03-07"
     },
     {
       "id": "thumb-10",
-      "title": "The Psychology of Viral Videos",
-      "client": "Creator Academy",
-      "views": "100k+ views",
-      "niche": "Educational",
-      "date": "2026-01-20",
-      "image": "assets/portfolio/thumb-10.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-10.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-10.jpg",
+      "order": 10,
+      "date": "2026-03-06"
     },
     {
       "id": "thumb-11",
-      "title": "Making Pasta in a Parmesan Wheel",
-      "client": "Chef Studio",
-      "views": "1M+ views",
-      "niche": "Cooking",
-      "date": "2026-01-15",
-      "image": "assets/portfolio/thumb-11.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-11.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-11.jpg",
+      "order": 11,
+      "date": "2026-03-05"
     },
     {
       "id": "thumb-12",
-      "title": "How To Level Up Your Game Dev Portfolio",
-      "client": "Indie Dev",
-      "views": "100k+ views",
-      "niche": "Art",
-      "date": "2026-01-10",
-      "image": "assets/portfolio/thumb-12.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-12.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-12b.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-12.jpg",
+      "order": 12,
+      "date": "2026-03-04"
     },
     {
       "id": "thumb-13",
-      "title": "I Tested Every AI Tool So You Don't Have To",
-      "client": "Tech Review",
-      "views": "300k+ views",
-      "niche": "Other",
-      "date": "2026-01-05",
-      "image": "assets/portfolio/thumb-13.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-13.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-13.png",
+      "order": 13,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-14",
-      "title": "Football vs Basketball: Who Wins?",
-      "client": "Sports Central",
-      "views": "1M+ views",
-      "niche": "Sports",
-      "date": "2024-11-28",
-      "image": "assets/portfolio/thumb-14.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-14.svg"
-        },
-        {
-          "label": "B",
-          "image": "assets/portfolio/thumb-14b.svg"
-        },
-        {
-          "label": "C",
-          "image": "assets/portfolio/thumb-14c.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-14.png",
+      "order": 14,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-15",
-      "title": "We Hatched The Tiniest Eggs From Amazon",
-      "client": "Farm Life",
-      "views": "100k+ views",
-      "niche": "Lifestyle",
-      "date": "2024-10-20",
-      "image": "assets/portfolio/thumb-15.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-15.svg"
-        }
-      ],
-      "showChannel": true
+      "image": "assets/portfolio/thumb-15.jpg",
+      "order": 15,
+      "date": "2026-03-01"
     },
     {
       "id": "thumb-16",
-      "title": "How To Start Your First YouTube Channel",
-      "client": "Growth Lab",
-      "views": "100k+ views",
-      "niche": "Educational",
-      "date": "2024-09-15",
-      "image": "assets/portfolio/thumb-16.svg",
-      "variants": [
-        {
-          "label": "A",
-          "image": "assets/portfolio/thumb-16.svg"
-        }
-      ],
-      "showChannel": false
+      "image": "assets/portfolio/thumb-16.jpg",
+      "order": 16,
+      "date": "2026-03-01"
+    },
+    {
+      "id": "thumb-17",
+      "image": "assets/portfolio/thumb-17.jpg",
+      "order": 17,
+      "date": "2026-02-27"
+    },
+    {
+      "id": "thumb-18",
+      "image": "assets/portfolio/thumb-18.jpg",
+      "order": 18,
+      "date": "2026-02-26"
+    },
+    {
+      "id": "thumb-19",
+      "image": "assets/portfolio/thumb-19.png",
+      "order": 19,
+      "date": "2026-02-25"
+    },
+    {
+      "id": "thumb-20",
+      "image": "assets/portfolio/thumb-20.png",
+      "order": 20,
+      "date": "2026-02-24"
+    },
+    {
+      "id": "thumb-21",
+      "image": "assets/portfolio/thumb-21.jpg",
+      "order": 21,
+      "date": "2026-02-23"
+    },
+    {
+      "id": "thumb-22",
+      "image": "assets/portfolio/thumb-22.jpg",
+      "order": 22,
+      "date": "2026-02-22"
+    },
+    {
+      "id": "thumb-23",
+      "image": "assets/portfolio/thumb-23.png",
+      "order": 23,
+      "date": "2026-02-21"
+    },
+    {
+      "id": "thumb-24",
+      "image": "assets/portfolio/thumb-24.png",
+      "order": 24,
+      "date": "2026-02-20"
+    },
+    {
+      "id": "thumb-25",
+      "image": "assets/portfolio/thumb-25.jpg",
+      "order": 25,
+      "date": "2026-03-01"
+    },
+    {
+      "id": "thumb-26",
+      "image": "assets/portfolio/thumb-26.jpg",
+      "order": 26,
+      "date": "2026-02-18"
+    },
+    {
+      "id": "thumb-27",
+      "image": "assets/portfolio/thumb-27.jpg",
+      "order": 27,
+      "date": "2026-03-01"
+    },
+    {
+      "id": "thumb-28",
+      "image": "assets/portfolio/thumb-28.png",
+      "order": 28,
+      "date": "2026-02-16"
+    },
+    {
+      "id": "thumb-29",
+      "image": "assets/portfolio/thumb-29.png",
+      "order": 29,
+      "date": "2026-02-15"
+    },
+    {
+      "id": "thumb-30",
+      "image": "assets/portfolio/thumb-30.png",
+      "order": 30,
+      "date": "2026-02-14"
+    },
+    {
+      "id": "thumb-31",
+      "image": "assets/portfolio/thumb-31.jpg",
+      "order": 31,
+      "date": "2026-03-01"
+    },
+    {
+      "id": "thumb-32",
+      "image": "assets/portfolio/thumb-32.jpg",
+      "order": 32,
+      "date": "2026-03-01"
     }
   ]
 }

@@ -352,38 +352,83 @@ function renderHeroVisual() {
   else if (typeof initHeroLottie === "function") initHeroLottie();
 }
 
-function renderHeroTrusted(trusted) {
-  const row = document.querySelector(".hero-trusted-row");
-  if (!row || !trusted) return;
+function renderCreatorMarquee(trusted) {
+  const track = document.querySelector(".creator-marquee-track");
+  if (!track || !trusted) return;
 
   const creators = trusted.creators || [];
-  row.innerHTML = creators
-    .map(
-      (creator) => `
-    <a class="trusted-creator" href="${escapeAttr(creator.href)}" target="_blank" rel="noopener noreferrer"
-      aria-label="${escapeAttr(`${creator.name}, youtuber (${creator.subscribers})`)}">
-      <img class="trusted-creator-photo" src="${escapeAttr(creator.image)}" alt="${escapeAttr(creator.name)}" width="56" height="56" loading="lazy">
-      <span class="trusted-creator-tooltip" role="tooltip">
-        <span class="trusted-creator-channel">${escapeHtml(creator.name)}</span>
-        <span class="trusted-creator-subs">youtuber (${escapeHtml(creator.subscribers)})</span>
+  if (!creators.length) return;
+
+  const creatorHtml = (creator, isRepeat) => `
+    <a class="marquee-creator${isRepeat ? " marquee-creator--repeat" : ""}" href="${escapeAttr(creator.href)}" target="_blank" rel="noopener noreferrer"
+      aria-label="${escapeAttr(`${creator.name}, ${creator.subscribers} subscribers`)}">
+      <img class="marquee-creator-photo" src="${escapeAttr(creator.image)}" alt="" width="52" height="52" loading="lazy" decoding="async">
+      <span class="marquee-creator-meta">
+        <span class="marquee-creator-name">${escapeHtml(creator.name)}</span>
+        <span class="marquee-creator-subs">${escapeHtml(creator.subscribers)} subscribers</span>
       </span>
-    </a>`
-    )
-    .join("");
+    </a>`;
+
+  // Each half must be wider than the viewport for a seamless -50% loop.
+  const repeats = Math.max(3, Math.ceil(8 / creators.length));
+  const itemsHtml = Array.from({ length: repeats }, (_, setIndex) =>
+    creators.map((c) => creatorHtml(c, setIndex > 0)).join("")
+  ).join("");
+
+  track.innerHTML = `
+    <div class="creator-marquee-group">${itemsHtml}</div>
+    <div class="creator-marquee-group" aria-hidden="true">${itemsHtml}</div>`;
+}
+
+function renderHeadlineWithHighlight(el, text, highlight) {
+  if (!el) return;
+  if (highlight && text.includes(highlight)) {
+    const idx = text.indexOf(highlight);
+    const before = text.slice(0, idx);
+    const after = text.slice(idx + highlight.length);
+    const breakBefore = before.trim() ? '<br aria-hidden="true">' : "";
+    el.innerHTML = `${escapeHtml(before)}${breakBefore}<mark class="headline-mark">${escapeHtml(highlight)}</mark>${escapeHtml(after)}`;
+  } else {
+    el.textContent = text;
+  }
 }
 
 function textCell(vp) {
   return `<div class="thumb-cell thumb-cell--text reveal-up"><h3>${escapeHtml(vp.title)}</h3><p>${escapeHtml(vp.body)}</p></div>`;
 }
 
-function wallImageCell(imagePath, edge = "") {
+function wallImageCell(imagePath, wallIndex, edge = "") {
   if (!imagePath) {
     return `<div class="thumb-cell thumb-cell--empty reveal-up" aria-hidden="true"></div>`;
   }
   const edgeClass =
     edge === "left" ? " thumb-cell--edge-left" : edge === "right" ? " thumb-cell--edge-right" : "";
-  const src = escapeAttr(imagePath);
-  return `<div class="thumb-cell reveal-up${edgeClass}"><span class="thumb-cell-media"><img src="${src}" alt="" loading="lazy" decoding="async"></span></div>`;
+  const id = `wall-${String(wallIndex + 1).padStart(2, "0")}`;
+  const item = { id, image: imagePath, title: "" };
+  return `<button type="button" class="thumb-cell reveal-up${edgeClass}" data-id="${escapeAttr(id)}" aria-label="View thumbnail"><span class="thumb-cell-media">${Manimate.renderVisual(item, { responsive: true, context: "homepage-wall" })}</span></button>`;
+}
+
+function buildHomeLightboxItems(site, portfolioItems) {
+  const items = [...portfolioItems];
+  const seen = new Set(items.map((item) => item.id));
+
+  getHomepageWallImages(site).forEach((imagePath, index) => {
+    if (!imagePath) return;
+    const id = `wall-${String(index + 1).padStart(2, "0")}`;
+    if (seen.has(id)) return;
+    items.push({ id, image: imagePath, title: "" });
+    seen.add(id);
+  });
+
+  (site?.whyHire?.pillars || []).forEach((pillar, index) => {
+    if (!pillar?.image) return;
+    const id = `why-${String(index + 1).padStart(2, "0")}`;
+    if (seen.has(id)) return;
+    items.push({ id, image: pillar.image, title: pillar.title || "" });
+    seen.add(id);
+  });
+
+  return items;
 }
 
 function getHomepageWallImages(site) {
@@ -400,24 +445,30 @@ function renderThumbnailWall(site) {
   const [vp0, vp1] = site.valueProps;
 
   const ordered = [];
-  ordered.push(wallImageCell(thumbs[0], "left"));
-  if (thumbs[1]) ordered.push(wallImageCell(thumbs[1]));
+  ordered.push(wallImageCell(thumbs[0], 0, "left"));
+  if (thumbs[1]) ordered.push(wallImageCell(thumbs[1], 1));
   if (vp0) ordered.push(textCell(vp0));
-  thumbs.slice(2, 4).forEach((t) => ordered.push(wallImageCell(t)));
-  if (thumbs[4]) ordered.push(wallImageCell(thumbs[4], "right"));
-  ordered.push(wallImageCell(thumbs[5], "left"));
-  thumbs.slice(6, 8).forEach((t) => ordered.push(wallImageCell(t)));
+  thumbs.slice(2, 4).forEach((t, i) => ordered.push(wallImageCell(t, i + 2)));
+  if (thumbs[4]) ordered.push(wallImageCell(thumbs[4], 4, "right"));
+  ordered.push(wallImageCell(thumbs[5], 5, "left"));
+  thumbs.slice(6, 8).forEach((t, i) => ordered.push(wallImageCell(t, i + 6)));
   if (vp1) ordered.push(textCell(vp1));
-  if (thumbs[8]) ordered.push(wallImageCell(thumbs[8]));
-  if (thumbs[9]) ordered.push(wallImageCell(thumbs[9], "right"));
+  if (thumbs[8]) ordered.push(wallImageCell(thumbs[8], 8));
+  if (thumbs[9]) ordered.push(wallImageCell(thumbs[9], 9, "right"));
 
   grid.setAttribute("data-reveal-stagger", "");
   grid.innerHTML = ordered.join("");
+  markLoadedPictures(grid);
+  Lightbox.bindGrid(grid);
 }
 
 function resolveWhyHireItem(pillar, portfolioItems, index) {
   if (pillar?.image) {
-    return { image: pillar.image, title: pillar.title || "" };
+    return {
+      id: `why-${String(index + 1).padStart(2, "0")}`,
+      image: pillar.image,
+      title: pillar.title || "",
+    };
   }
   if (pillar?.portfolioItemId) {
     const found = portfolioItems.find((item) => item.id === pillar.portfolioItemId);
@@ -435,12 +486,12 @@ function renderWhyHireGrid(pillars, portfolioItems) {
 
   const textCell = (p) =>
     `<div class="why-cell why-cell--text reveal-up"><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.body)}</p></div>`;
-  const imageCell = (item) => {
+const imageCell = (item) => {
     if (!item?.image && !item?.id) {
       return `<div class="why-cell why-cell--image why-cell--empty reveal-scale" aria-hidden="true"></div>`;
     }
     const label = escapeAttr(item.title || "thumbnail");
-    return `<button type="button" class="why-cell why-cell--image reveal-scale" data-id="${escapeAttr(item.id || "")}" aria-label="View ${label}"><div class="why-cell-media">${Manimate.renderVisual(item)}</div></button>`;
+    return `<button type="button" class="why-cell why-cell--image reveal-scale" data-id="${escapeAttr(item.id || "")}" aria-label="View ${label}"><div class="why-cell-media">${Manimate.renderVisual(item, { responsive: true, context: "why-hire" })}</div></button>`;
   };
 
   // ike layout: row1 = text | image | text, row2 = image | text | image
@@ -461,6 +512,7 @@ function renderWhyHireGrid(pillars, portfolioItems) {
 
   grid.setAttribute("data-reveal-stagger", "");
   grid.innerHTML = ordered.join("");
+  markLoadedPictures(grid);
   Lightbox.bindGrid(grid);
 }
 
@@ -469,7 +521,7 @@ async function renderHome(site) {
   document.title = `${site.brand.name} | ${site.brand.tagline}`;
 
   const hero = site.hero;
-  queryRequired(".hero h1").textContent = hero.headline;
+  renderHeadlineWithHighlight(queryRequired(".hero h1"), hero.headline, hero.highlight);
   queryRequired(".hero-lead").textContent = hero.subheadline;
   queryRequired(".hero-actions").innerHTML = `
     <a href="${escapeAttr(hero.ctaPrimary.href)}" class="btn btn-primary">${escapeHtml(hero.ctaPrimary.label)}</a>
@@ -477,11 +529,13 @@ async function renderHome(site) {
 
   const portfolioPromise = loadPortfolioData();
 
-  renderHeroTrusted(site.trustedBy);
+  renderCreatorMarquee(site.trustedBy);
   renderHeroVisual();
   renderTestimonialCarousel(applyTrustedSubscriberRoles(site.testimonials, site.trustedBy));
 
   const portfolio = await portfolioPromise;
+  Lightbox.setItems(buildHomeLightboxItems(site, portfolio.items));
+  Lightbox.init();
   renderThumbnailWall(site);
 
   const process = site.process;

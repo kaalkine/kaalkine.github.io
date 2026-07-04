@@ -28,8 +28,8 @@ const BULLSEYE_NUDGE = [6, 111, 0];
 const HAND_NUDGE = [-28, 0, 0];
 
 const DEFAULTS = {
-  heroPortraitPath: "me_plus_hand/justGUY.png",
-  heroHandPath: "me_plus_hand/justHAND.png",
+  heroPortraitPath: "assets/hero/images/hero-body_v2.png",
+  heroHandPath: "assets/hero/images/hero-hand_v2.png",
 };
 
 function resolveProjectPath(relPath) {
@@ -71,6 +71,7 @@ async function loadTemplate({ fresh = false } = {}) {
 async function writeWebpAsset(filePath, width, height, fileName) {
   fs.mkdirSync(IMAGES_DIR, { recursive: true });
   const outPath = path.join(IMAGES_DIR, fileName);
+  if (path.resolve(filePath) === path.resolve(outPath)) return fileName;
   await sharp(filePath)
     .resize(width, height, {
       fit: "contain",
@@ -181,7 +182,13 @@ async function main() {
   const portraitSrc = requireSourceFile(sources.portraitPath, "hero portrait (body)");
   const handSrc = requireSourceFile(sources.handPath, "hero hand");
 
-  const lottie = await loadTemplate({ fresh: true });
+  let lottie;
+  try {
+    lottie = await loadTemplate({ fresh: true });
+  } catch (err) {
+    console.warn(`Template fetch failed (${err.message}); using cached template.`);
+    lottie = await loadTemplate({ fresh: false });
+  }
   const handAsset = lottie.assets.find((a) => a.id === "image_0");
   const bodyAsset = lottie.assets.find((a) => a.id === "image_1");
 
@@ -190,8 +197,8 @@ async function main() {
   }
 
   const [bodyFile, handFile] = await Promise.all([
-    writeWebpAsset(portraitSrc, bodyAsset.w, bodyAsset.h, "hero-body.webp"),
-    writeWebpAsset(handSrc, handAsset.w, handAsset.h, "hero-hand.webp"),
+    writeWebpAsset(portraitSrc, bodyAsset.w, bodyAsset.h, "hero-body_v2.webp"),
+    writeWebpAsset(handSrc, handAsset.w, handAsset.h, "hero-hand_v2.webp"),
   ]);
   setExternalImageAsset(bodyAsset, bodyFile);
   setExternalImageAsset(handAsset, handFile);

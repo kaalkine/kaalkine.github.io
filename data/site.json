@@ -51,6 +51,7 @@
   ],
   "hero": {
     "headline": "You only get one first impression. Make it count.",
+    "highlight": "Make it count.",
     "subheadline": "On YouTube, attention is tough to catch. Thankfully, you found an expert.",
     "ctaPrimary": {
       "label": "Get in touch",
@@ -127,16 +128,16 @@
     }
   ],
   "homepageWall": [
-    "assets/portfolio/thumb-01.svg",
-    "assets/portfolio/thumb-02.svg",
-    "assets/portfolio/thumb-03.svg",
-    "assets/portfolio/thumb-04.svg",
-    "assets/portfolio/thumb-05.svg",
-    "assets/portfolio/thumb-06.svg",
-    "assets/portfolio/thumb-07.svg",
-    "assets/portfolio/thumb-08.svg",
-    "assets/portfolio/thumb-09.svg",
-    "assets/portfolio/thumb-10.svg"
+    "assets/portfolio/wall-01.jpg",
+    "assets/portfolio/wall-02.jpg",
+    "assets/portfolio/wall-03.jpg",
+    "assets/portfolio/wall-04.png",
+    "assets/portfolio/wall-05.png",
+    "assets/portfolio/wall-06.jpg",
+    "assets/portfolio/wall-07.png",
+    "assets/portfolio/wall-08.jpg",
+    "assets/portfolio/wall-09.jpg",
+    "assets/portfolio/wall-10.png"
   ],
   "valueProps": [
     {
@@ -179,20 +180,17 @@
       {
         "title": "I design thumbnails that get clicked without feeling fake.",
         "body": "I'm strongly anti-clickbait. A great thumbnail should create curiosity, match the video, and strengthen your brand, not trick the viewer. I focus on thumbnails that help creators earn clicks while keeping audience trust intact.",
-        "portfolioItemId": "thumb-01",
-        "imageIndex": 0
+        "image": "assets/portfolio/why-01.png"
       },
       {
         "title": "I've worked with creators, agencies, and high-performing channels.",
         "body": "I've been designing thumbnails for the past 4 years and have worked with multiple creators and agencies, including Clickables and Nutty History for over half a year. My work has supported channels aiming for stronger CTR, better packaging, and millions of views.",
-        "portfolioItemId": "thumb-05",
-        "imageIndex": 4
+        "image": "assets/portfolio/why-02.jpg"
       },
       {
         "title": "I know how to make thumbnails feel premium.",
         "body": "I'm highly skilled in Photoshop and focus on strong composition, clean storytelling, clear focal points, and bold visual hierarchy. My goal is to make your video instantly understandable and impossible to ignore.",
-        "portfolioItemId": "thumb-08",
-        "imageIndex": 7
+        "image": "assets/portfolio/why-03.jpg"
       }
     ]
   },
@@ -270,7 +268,7 @@
   },
   "portfolio": {
     "headline": "Behold: the Thumbnail Wall",
-    "subtitle": "Below are thumbnails I've worked on, sorted from most recent to oldest. Click to see them in detail, or toggle between multiple versions when designed with A/B testing in mind. Filter by niche. Happy scrolling!",
+    "subtitle": "A selection of work, newest first. Click any thumbnail to view it full size.",
     "cta": {
       "label": "I like what I see - Let's talk!",
       "href": "contact.html"

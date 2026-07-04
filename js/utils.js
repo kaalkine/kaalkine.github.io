@@ -74,6 +74,34 @@ function buildSparkCtaButton(href, label, options = {}) {
   </div>`;
 }
 
+/**
+ * LQIP blur-up: mark <picture> as loaded when its <img> finishes,
+ * so the blurred placeholder cross-fades out. Capture phase because
+ * load events don't bubble; runs before any grid is rendered.
+ */
+document.addEventListener(
+  "load",
+  (e) => {
+    if (e.target?.tagName === "IMG") e.target.closest("picture")?.classList.add("loaded");
+  },
+  true
+);
+document.addEventListener(
+  "error",
+  (e) => {
+    if (e.target?.tagName === "IMG") e.target.closest("picture")?.classList.add("loaded");
+  },
+  true
+);
+
+/** Mark pictures whose <img> already finished (e.g. from cache) as loaded. */
+function markLoadedPictures(root = document) {
+  root.querySelectorAll("picture > img").forEach((img) => {
+    if (img.complete) img.closest("picture")?.classList.add("loaded");
+  });
+}
+window.markLoadedPictures = markLoadedPictures;
+
 window.escapeHtml = escapeHtml;
 window.escapeAttr = escapeAttr;
 window.safeCssColor = safeCssColor;

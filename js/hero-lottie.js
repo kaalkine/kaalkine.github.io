@@ -1,4 +1,4 @@
-const HERO_LOTTIE_PATH = "assets/hero/kaalkine-hero.json?v=1781416039400";
+const HERO_LOTTIE_PATH = "assets/hero/kaalkine-hero.json?v=1783131679442";
 
 function initHeroLottie() {
   const container = document.querySelector(".hero-lottie");
