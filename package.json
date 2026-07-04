@@ -5,6 +5,7 @@
     "build:hero-lottie": "node scripts/build-hero-lottie.mjs",
     "build:story-bobble-lottie": "node scripts/build-story-bobble-lottie.mjs",
     "build:story-svg": "node scripts/trace-story-svg.mjs",
+    "build:og-image": "node scripts/build-og-image.mjs",
     "build:thumb-sizes": "node scripts/build-thumb-sizes.mjs && node scripts/build-lqip-css.mjs",
     "build:lqip-css": "node scripts/build-lqip-css.mjs",
     "optimize:brand-logo": "node scripts/optimize-brand-logo.mjs",
